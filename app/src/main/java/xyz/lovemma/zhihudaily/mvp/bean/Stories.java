@@ -1,32 +1,28 @@
-package xyz.lovemma.zhihudaily.entity;
+package xyz.lovemma.zhihudaily.mvp.bean;
+
+import java.util.List;
 
 /**
  * Created by OO on 2017/2/10.
  */
 
-public class TopStries {
+public class Stories {
 
     /**
-     * image : http://pic4.zhimg.com/dfe0ebab9729822458ea6aba75c2cb63.jpg
+     * images : ["http://pic1.zhimg.com/c794daedda9087b658ec312340904ffc.jpg"]
      * type : 0
-     * id : 9211461
-     * ga_prefix : 021018
-     * title : 那些屡次遭受家暴的受害者，为什么不选择分手离开？
+     * id : 9205443
+     * ga_prefix : 021020
+     * title : 现在的城市也许都是高楼，但刚开始的时候谁和谁都不一样
+     * multipic : true
      */
 
-    private String image;
     private int type;
     private int id;
     private String ga_prefix;
     private String title;
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+    private boolean multipic;
+    private List<String> images;
 
     public int getType() {
         return type;
@@ -58,5 +54,21 @@ public class TopStries {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean isMultipic() {
+        return multipic;
+    }
+
+    public void setMultipic(boolean multipic) {
+        this.multipic = multipic;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

@@ -1,4 +1,4 @@
-package xyz.lovemma.zhihudaily.entity;
+package xyz.lovemma.zhihudaily.mvp.bean;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/10.
  */
 
-public class LastStories {
+public class LatestStories {
 
     /**
      * date : 20170210

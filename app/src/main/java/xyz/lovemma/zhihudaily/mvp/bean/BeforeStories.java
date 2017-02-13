@@ -1,4 +1,4 @@
-package xyz.lovemma.zhihudaily.entity;
+package xyz.lovemma.zhihudaily.mvp.bean;
 
 import java.util.List;
 
