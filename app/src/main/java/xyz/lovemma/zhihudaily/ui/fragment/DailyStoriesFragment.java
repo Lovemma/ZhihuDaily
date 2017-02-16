@@ -35,7 +35,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
     private List<BaseItem> mItemList = new ArrayList<>();
     private LoadMoreWrapper mLoadMoreWrapper;
     private String date;
-
+    private boolean isRefresh;
     public DailyStoriesFragment() {
         // Required empty public constructor
     }
@@ -74,6 +74,13 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mLoadMoreWrapper);
         mPresenter.getLatestStories();
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                isRefresh = true;
+                mPresenter.getLatestStories();
+            }
+        });
     }
 
     @Override
@@ -89,11 +96,17 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
 
     @Override
     public void loadLatestStories(LatestStories latestStories) {
+        if (isRefresh) {
+            mItemList.clear();
+            mLoadMoreWrapper.notifyDataSetChanged();
+        }
         date = latestStories.getDate();
         mItemList.add(new StoriesHeader(latestStories.getTop_stories()));
         mItemList.add(new StoriesSection(latestStories.getDate()));
         mItemList.addAll(latestStories.getStories());
         mLoadMoreWrapper.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
+        isRefresh = true;
     }
 
     @Override
