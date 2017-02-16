@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/10.
  */
 
-public class StoryContent {
+public class StoryContent implements BaseItem {
 
     private String body;
     private String image_source;

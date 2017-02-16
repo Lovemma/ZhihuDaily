@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiManage {
     private static ApiManage mApiManage;
     private Retrofit mRetrofit;
-    private static CommonApi mCommonApi;
+    private CommonApi mCommonApi;
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -33,8 +33,17 @@ public class ApiManage {
         return mApiManage;
     }
 
+    private Object Monitor = new Object();
+
     public CommonApi getCommonApi() {
-        return mCommonApi == null ? configRetrofit(CommonApi.class) : mCommonApi;
+        if (mCommonApi == null) {
+            synchronized (Monitor) {
+                if (mCommonApi == null) {
+                    mCommonApi = configRetrofit(CommonApi.class);
+                }
+            }
+        }
+        return mCommonApi;
     }
 
     private <T> T configRetrofit(Class<T> service) {

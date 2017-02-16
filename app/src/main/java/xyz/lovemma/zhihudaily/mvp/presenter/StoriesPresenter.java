@@ -19,9 +19,10 @@ public class StoriesPresenter extends IBasePresenter {
 
     public StoriesPresenter(IStoriesView view) {
         mView = view;
+        mBiz = new StoriesBiz();
     }
 
-    void getLatestStories() {
+    public void getLatestStories() {
         Subscription subscription = mBiz.getLatestStories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +45,7 @@ public class StoriesPresenter extends IBasePresenter {
         addSubscription(subscription);
     }
 
-    void getBeforeDaily(String date) {
+    public void getBeforeDaily(String date) {
      Subscription subscription = mBiz.getBeforeStories(date)
              .subscribeOn(Schedulers.io())
              .observeOn(AndroidSchedulers.mainThread())

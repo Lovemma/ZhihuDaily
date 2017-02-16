@@ -4,7 +4,7 @@ package xyz.lovemma.zhihudaily.mvp.bean;
  * Created by OO on 2017/2/10.
  */
 
-public class TopStries {
+public class TopStories implements BaseItem {
 
     /**
      * image : http://pic4.zhimg.com/dfe0ebab9729822458ea6aba75c2cb63.jpg

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/10.
  */
 
-public class BeforeStories {
+public class BeforeStories implements BaseItem{
 
     /**
      * date : 20170209

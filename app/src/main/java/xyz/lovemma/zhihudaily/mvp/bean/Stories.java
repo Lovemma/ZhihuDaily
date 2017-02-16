@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/10.
  */
 
-public class Stories {
+public class Stories implements BaseItem {
 
     /**
      * images : ["http://pic1.zhimg.com/c794daedda9087b658ec312340904ffc.jpg"]

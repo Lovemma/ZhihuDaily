@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/10.
  */
 
-public class LatestStories {
+public class LatestStories implements BaseItem{
 
     /**
      * date : 20170210
@@ -16,7 +16,7 @@ public class LatestStories {
 
     private String date;
     private List<Stories> stories;
-    private List<TopStries> top_stories;
+    private List<TopStories> top_stories;
 
     public String getDate() {
         return date;
@@ -34,11 +34,11 @@ public class LatestStories {
         this.stories = stories;
     }
 
-    public List<TopStries> getTop_stories() {
+    public List<TopStories> getTop_stories() {
         return top_stories;
     }
 
-    public void setTop_stories(List<TopStries> top_stories) {
+    public void setTop_stories(List<TopStories> top_stories) {
         this.top_stories = top_stories;
     }
 }
