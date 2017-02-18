@@ -1,11 +1,15 @@
 package xyz.lovemma.zhihudaily.ui.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.mvp.bean.BaseItem;
 import xyz.lovemma.zhihudaily.mvp.bean.StoriesHeader;
+import xyz.lovemma.zhihudaily.ui.activity.StoryContentActivity;
 import xyz.lovemma.zhihudaily.widget.Banner.Banner;
 
 /**
@@ -13,6 +17,8 @@ import xyz.lovemma.zhihudaily.widget.Banner.Banner;
  */
 
 public class StoriesHeaderDelegete implements ItemViewDelegate<BaseItem> {
+    private Context mContext;
+
     @Override
     public int getItemViewLayoutId() {
         return R.layout.item_story_header;
@@ -25,10 +31,19 @@ public class StoriesHeaderDelegete implements ItemViewDelegate<BaseItem> {
 
     @Override
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
-        StoriesHeader storiesHeader = (StoriesHeader) baseItem;
+        mContext = holder.getConvertView().getContext();
+        final StoriesHeader storiesHeader = (StoriesHeader) baseItem;
         Banner banner = holder.getView(R.id.banner);
-        banner.setImages(storiesHeader.getImages())
-                .setTitles(storiesHeader.getTitles())
+        banner.setDataList(storiesHeader.getTopStories())
                 .start();
+
+        banner.setOnBannerClickListener(new Banner.OnBannerClickListener() {
+            @Override
+            public void OnBannerClick(int id) {
+                Intent intent = new Intent(mContext,StoryContentActivity.class);
+                intent.putExtra("id", id);
+                mContext.startActivity(intent);
+            }
+        });
     }
 }

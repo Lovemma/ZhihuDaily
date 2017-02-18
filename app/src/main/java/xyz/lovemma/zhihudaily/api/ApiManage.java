@@ -48,7 +48,7 @@ public class ApiManage {
 
     private <T> T configRetrofit(Class<T> service) {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://news-at.zhihu.com/api/4/")
+                .baseUrl("http://news-at.zhihu.com")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

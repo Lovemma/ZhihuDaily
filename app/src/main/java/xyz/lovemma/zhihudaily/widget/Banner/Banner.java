@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.lovemma.zhihudaily.R;
+import xyz.lovemma.zhihudaily.mvp.bean.TopStories;
 
 /**
  * Created by OO on 2017/2/14.
@@ -30,13 +31,13 @@ public class Banner extends RelativeLayout {
 
     private BannerAdapter mAdapter;
     private ViewPager.OnPageChangeListener mOnPageChangeListener;
-    private List<String> imageUrls;
-    private List<String> titles;
+    private List<TopStories> mDataList;
     private List<ImageView> mViewList = new ArrayList<>();
     private int lastPosition;
     private boolean isAutoPlay = true;
     Handler mHandler = new Handler();
     private boolean isLoad;
+    private OnBannerClickListener mOnBannerClickListener;
 
     public Banner(Context context) {
         this(context, null);
@@ -58,15 +59,17 @@ public class Banner extends RelativeLayout {
         mTextView = (TextView) view.findViewById(R.id.title);
     }
 
-
-    public Banner setImages(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
+    public Banner setDataList(List<TopStories> dataList) {
+        mDataList = dataList;
         return this;
     }
 
-    public Banner setTitles(List<String> titles) {
-        this.titles = titles;
-        return this;
+    public void setOnBannerClickListener(OnBannerClickListener listener) {
+        this.mOnBannerClickListener = listener;
+    }
+
+    public interface OnBannerClickListener {
+        public void OnBannerClick(int id);
     }
 
     public Banner start() {
@@ -80,7 +83,7 @@ public class Banner extends RelativeLayout {
 
     private void initIndicator() {
         indicator.removeAllViews();
-        for (int i = 0; i < imageUrls.size(); i++) {
+        for (int i = 0; i < mDataList.size(); i++) {
             ImageView point = new ImageView(getContext());
             LayoutParams params = new LayoutParams(20, 20);
             params.leftMargin = 5;
@@ -98,12 +101,19 @@ public class Banner extends RelativeLayout {
 
     private void initImageList() {
         mViewList.clear();
-        for (int i = 0; i < imageUrls.size(); i++) {
+        for (int i = 0; i < mDataList.size(); i++) {
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             mViewList.add(imageView);
+            final int id = mDataList.get(i).getId();
+            imageView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnBannerClickListener.OnBannerClick(id);
+                }
+            });
             Glide.with(getContext())
-                    .load(imageUrls.get(i))
+                    .load(mDataList.get(i).getImage())
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(imageView);
         }
@@ -111,7 +121,7 @@ public class Banner extends RelativeLayout {
     }
 
     private void setData() {
-        mTextView.setText(titles.get(0));
+        mTextView.setText(mDataList.get(0).getTitle());
         if (mAdapter == null) {
             mAdapter = new BannerAdapter(mViewList);
         }
@@ -127,11 +137,11 @@ public class Banner extends RelativeLayout {
 
                 @Override
                 public void onPageSelected(int position) {
-                    position = position % imageUrls.size();
+                    position = position % mDataList.size();
                     indicator.getChildAt(position).setSelected(true);
                     indicator.getChildAt(lastPosition).setSelected(false);
                     lastPosition = position;
-                    mTextView.setText(titles.get(position));
+                    mTextView.setText(mDataList.get(position).getTitle());
                 }
 
                 @Override
@@ -171,4 +181,6 @@ public class Banner extends RelativeLayout {
             }
         }
     };
+
+
 }
