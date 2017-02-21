@@ -6,6 +6,7 @@ import rx.Observable;
 import xyz.lovemma.zhihudaily.mvp.bean.BeforeStories;
 import xyz.lovemma.zhihudaily.mvp.bean.LatestStories;
 import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
+import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
 
 /**
  * Created by OO on 2017/2/11.
@@ -21,5 +22,6 @@ public interface CommonApi {
     @GET("/api/4/news/{id}")
     Observable<StoryContent> getStoryContent(@Path("id") int id);
 
-
+    @GET("/api/4/story-extra/{id}")
+    Observable<StoryContentExtra> getStoryContentExtra(@Path("id") int id);
 }

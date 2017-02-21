@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/image"
             android:layout_alignRight="@+id/image"
-            android:src="@drawable/home_pic"
+            android:src="@drawable/multi_pic"
             android:visibility="invisible"/>
 
         <TextView

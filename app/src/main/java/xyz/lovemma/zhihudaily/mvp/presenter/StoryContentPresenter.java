@@ -5,6 +5,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
+import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.biz.StoryContentBiz;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 
@@ -26,19 +27,42 @@ public class StoryContentPresenter extends IBasePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<StoryContent>() {
-                        @Override
-                        public void onCompleted() {
+                    @Override
+                    public void onCompleted() {
 
-                        }
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
-                        }
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                    }
 
                     @Override
                     public void onNext(StoryContent storyContent) {
                         mView.loadStoryContent(storyContent);
+                    }
+                });
+        addSubscription(subscription);
+    }
+
+    public void getStoryContentExtra(int id) {
+        Subscription subscription = mStoryContentBiz.getStoryContentExtra(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<StoryContentExtra>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                    }
+
+                    @Override
+                    public void onNext(StoryContentExtra storyContentExtra) {
+                        mView.loadStoryContentExtra(storyContentExtra);
                     }
                 });
         addSubscription(subscription);

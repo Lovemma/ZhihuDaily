@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/menu_share"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_collect"
+        android:icon="@drawable/ic_star"
+        android:title="@string/menu_collect"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_comment"
+        android:title="@string/menu_comment"
+        app:actionProviderClass="xyz.lovemma.zhihudaily.widget.ActionProvider.StoryContentActionProvider"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_follow"
+        android:title="@string/menu_follow"
+        app:actionProviderClass="xyz.lovemma.zhihudaily.widget.ActionProvider.StoryContentActionProvider"
+        app:showAsAction="always"/>
+</menu>
