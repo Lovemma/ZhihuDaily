@@ -10,9 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:background="@android:color/transparent"
-        android:scaleType="center"
-        tools:background="@color/colorAccent"
-        tools:src="@drawable/ic_comment"/>
+        android:paddingLeft="5dp"
+        android:scaleType="center"/>
 
     <TextView
         android:id="@+id/num"
@@ -20,9 +19,7 @@
         android:layout_height="64dp"
         android:layout_toRightOf="@+id/icon"
         android:gravity="center_vertical"
-        android:textColor="@android:color/white"
-        tools:background="@color/colorAccent"
-        tools:text="44"
         android:paddingLeft="2dp"
+        android:textColor="@android:color/white"
         android:textSize="14sp"/>
 </RelativeLayout>

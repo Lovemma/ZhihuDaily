@@ -21,6 +21,7 @@
         </activity>
 
         <activity android:name=".ui.activity.StoryContentActivity"/>
+
     </application>
 
 </manifest>

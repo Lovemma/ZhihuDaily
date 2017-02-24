@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -27,7 +28,7 @@ import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 import xyz.lovemma.zhihudaily.utils.WebUtil;
 import xyz.lovemma.zhihudaily.widget.ActionProvider.StoryContentActionProvider;
 
-public class StoryContentActivity extends AppCompatActivity implements IStoryContentView {
+public class StoryContentActivity extends AppCompatActivity implements IStoryContentView, MenuItem.OnMenuItemClickListener {
     private Toolbar mToolbar;
     private ImageView mImageView;
     private TextView title;
@@ -85,6 +86,11 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
         mFollowProvider = (StoryContentActionProvider) MenuItemCompat.getActionProvider(mMenu.findItem(R.id.menu_follow));
         mFollowProvider.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_thumb_up));
         mCommentProvider.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_comment));
+        mMenu.findItem(R.id.menu_share).setOnMenuItemClickListener(this);
+        mMenu.findItem(R.id.menu_collect).setOnMenuItemClickListener(this);
+        mMenu.findItem(R.id.menu_comment).setOnMenuItemClickListener(this);
+        mMenu.findItem(R.id.menu_follow).setOnMenuItemClickListener(this);
+
     }
 
     private void initWebView() {
@@ -128,5 +134,23 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
         mCommentProvider.setNum(storyContentExtra.getComments());
 
         mFollowProvider.setNum(storyContentExtra.getPopularity());
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_share:
+                Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_collect:
+
+                break;
+            case R.id.menu_comment:
+                break;
+            case R.id.menu_follow:
+                break;
+        }
+        return false;
     }
 }
