@@ -13,7 +13,7 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.ThemesContentItem;
-import xyz.lovemma.zhihudaily.ui.activity.StoryContentActivity;
+import xyz.lovemma.zhihudaily.ui.activity.OtherStoryContentActivity;
 
 /**
  * Created by OO on 2017/2/28.
@@ -49,7 +49,7 @@ public class OtherStoriesItemDelegete implements ItemViewDelegate<BaseItem> {
         holder.setOnClickListener(R.id.cardView, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, StoryContentActivity.class);
+                Intent intent = new Intent(mContext, OtherStoryContentActivity.class);
                 intent.putExtra("id", item.getId());
                 mContext.startActivity(intent);
             }
