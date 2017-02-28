@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,8 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.List;
 
 import xyz.lovemma.zhihudaily.R;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
+import xyz.lovemma.zhihudaily.bean.StoryContent;
+import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoryContentPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 import xyz.lovemma.zhihudaily.utils.WebUtil;
@@ -80,6 +81,12 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
     }
 
     private void initToolBar() {
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         mToolbar.inflateMenu(R.menu.menu_story_content);
         mMenu = mToolbar.getMenu();
         mCommentProvider = (StoryContentActionProvider) MenuItemCompat.getActionProvider(mMenu.findItem(R.id.menu_comment));

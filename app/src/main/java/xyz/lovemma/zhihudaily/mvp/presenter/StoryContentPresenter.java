@@ -4,8 +4,8 @@ import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
+import xyz.lovemma.zhihudaily.bean.StoryContent;
+import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.biz.StoryContentBiz;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 

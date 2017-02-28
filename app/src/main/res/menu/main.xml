@@ -2,8 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/action_notification"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/action_notification"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_night"
+        android:title="@string/action_night"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_setting"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
 </menu>

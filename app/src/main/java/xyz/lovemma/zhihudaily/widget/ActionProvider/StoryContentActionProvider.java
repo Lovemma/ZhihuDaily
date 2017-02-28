@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import xyz.lovemma.zhihudaily.R;
 
 /**
@@ -48,6 +50,16 @@ public class StoryContentActionProvider extends ActionProvider {
     }
 
     public void setNum(int num) {
-        mTextView.setText(Integer.toString(num));
+        mTextView.setText(CalculateNum(num));
+    }
+
+    private String CalculateNum(int num) {
+        if (num > 1000) {
+            mTextView.setTextSize(12);
+            double d = (double) num / 1000;
+            DecimalFormat decimalFormat = new DecimalFormat("0.0");
+            return decimalFormat.format(d) + "K";
+        }
+        return Integer.toString(num);
     }
 }

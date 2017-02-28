@@ -1,7 +1,6 @@
 package xyz.lovemma.zhihudaily;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,9 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment;
+import xyz.lovemma.zhihudaily.ui.fragment.OtherStoriesFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
+    public static final int DRAWER_HOME = 1;
+    public static final int DRAWER_OTHER = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
+        switchFragment();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new DailyStoriesFragment()).commit();
     }
 
     @Override
@@ -60,35 +59,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    private int mPosition = 0;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+    public void switchFragment(int id, int type,int position) {
+        if (mPosition == position) {
+            return;
         }
+        if (type == DRAWER_HOME) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new DailyStoriesFragment()).commit();
+        } else if (type == DRAWER_OTHER) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, OtherStoriesFragment.newInstance(id)).commit();
+        }
+        mPosition = position;
+    }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    public void switchFragment() {
+        switchFragment(0, DRAWER_HOME, 1);
+        mPosition = 1;
     }
 }

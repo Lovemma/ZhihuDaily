@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.lovemma.zhihudaily.R;
-import xyz.lovemma.zhihudaily.mvp.bean.BeforeStories;
-import xyz.lovemma.zhihudaily.mvp.bean.LatestStories;
-import xyz.lovemma.zhihudaily.mvp.bean.StoriesHeader;
-import xyz.lovemma.zhihudaily.mvp.bean.StoriesSection;
+import xyz.lovemma.zhihudaily.bean.BeforeStories;
+import xyz.lovemma.zhihudaily.bean.LatestStories;
+import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesHeader;
+import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesSection;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoriesPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoriesView;
-import xyz.lovemma.zhihudaily.mvp.bean.BaseItem;
-import xyz.lovemma.zhihudaily.ui.adapter.StoriesListAdapter;
+import xyz.lovemma.zhihudaily.bean.BaseItem;
+import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesListAdapter;
 
 public class DailyStoriesFragment extends Fragment implements IStoriesView {
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -85,8 +85,8 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         mPresenter.unsubcrible();
+        super.onDestroy();
     }
 
     @Override

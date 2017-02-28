@@ -3,14 +3,14 @@ package xyz.lovemma.zhihudaily.api;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
-import xyz.lovemma.zhihudaily.mvp.bean.BeforeStories;
-import xyz.lovemma.zhihudaily.mvp.bean.LatestStories;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentLongComment;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentShortComment;
-import xyz.lovemma.zhihudaily.mvp.bean.Themes;
-import xyz.lovemma.zhihudaily.mvp.bean.ThemesContent;
+import xyz.lovemma.zhihudaily.bean.BeforeStories;
+import xyz.lovemma.zhihudaily.bean.LatestStories;
+import xyz.lovemma.zhihudaily.bean.StoryContent;
+import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
+import xyz.lovemma.zhihudaily.bean.StoryContentLongComment;
+import xyz.lovemma.zhihudaily.bean.StoryContentShortComment;
+import xyz.lovemma.zhihudaily.bean.Themes;
+import xyz.lovemma.zhihudaily.bean.ThemesContent;
 
 /**
  * Created by OO on 2017/2/11.

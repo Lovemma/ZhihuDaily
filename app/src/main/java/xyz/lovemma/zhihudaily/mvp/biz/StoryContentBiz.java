@@ -2,8 +2,8 @@ package xyz.lovemma.zhihudaily.mvp.biz;
 
 import rx.Observable;
 import xyz.lovemma.zhihudaily.api.ApiManage;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
+import xyz.lovemma.zhihudaily.bean.StoryContent;
+import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 
 /**
  * Created by OO on 2017/2/16.

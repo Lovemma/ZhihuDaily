@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.lovemma.zhihudaily.R;
-import xyz.lovemma.zhihudaily.mvp.bean.TopStories;
+import xyz.lovemma.zhihudaily.bean.TopStories;
 
 /**
  * Created by OO on 2017/2/14.
@@ -83,7 +83,7 @@ public class Banner extends RelativeLayout {
 
     private void initIndicator() {
         indicator.removeAllViews();
-        for (int i = 0; i < mDataList.size(); i++) {
+        for (int i = 0; i < mDataList.size() && mDataList.size() > 1; i++) {
             ImageView point = new ImageView(getContext());
             LayoutParams params = new LayoutParams(20, 20);
             params.leftMargin = 5;

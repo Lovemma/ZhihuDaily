@@ -1,7 +1,7 @@
 package xyz.lovemma.zhihudaily.mvp.view;
 
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContent;
-import xyz.lovemma.zhihudaily.mvp.bean.StoryContentExtra;
+import xyz.lovemma.zhihudaily.bean.StoryContent;
+import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 
 /**
  * Created by OO on 2017/2/16.

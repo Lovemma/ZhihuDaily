@@ -4,12 +4,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置选项</string>
+    <string name="action_notification">通知</string>
+    <string name="action_night">夜间模式</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_comment">评论</string>
     <string name="menu_share">分享</string>
     <string name="menu_collect">收藏</string>
     <string name="menu_follow">点赞</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
