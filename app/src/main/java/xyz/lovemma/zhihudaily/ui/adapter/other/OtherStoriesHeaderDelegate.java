@@ -15,7 +15,7 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  * Created by OO on 2017/2/27.
  */
 
-public class OtherStoriesHeaderDelegete implements ItemViewDelegate<BaseItem> {
+public class OtherStoriesHeaderDelegate implements ItemViewDelegate<BaseItem> {
     @Override
     public int getItemViewLayoutId() {
         return R.layout.item_other_story_header;

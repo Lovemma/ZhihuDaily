@@ -25,7 +25,7 @@ public class ThemesListAdapter extends MultiItemTypeAdapter<BaseItem> {
         super(context, datas);
         addItemViewDelegate(new DrawerHeaderDelegate());
         addItemViewDelegate(new DrawerHomeDelegate());
-        addItemViewDelegate(new ThemeItemDelegete());
+        addItemViewDelegate(new ThemeItemDelegate());
     }
 
     @Override

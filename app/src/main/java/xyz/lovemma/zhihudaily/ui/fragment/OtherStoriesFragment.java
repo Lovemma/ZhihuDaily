@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesHeader;
 import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesListAdapter;
 import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesSection;
 
-public class OtherStoriesFragment extends Fragment implements IOtherStoriesView{
+public class OtherStoriesFragment extends Fragment implements IOtherStoriesView {
 
     private static final String LIST_ID = "list_id";
     private int id;
@@ -35,6 +36,7 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView{
 
     private OtherStoryPresenter mPresenter;
     private OtherStoriesListAdapter mAdapter;
+    private boolean isRefresh;
 
     public OtherStoriesFragment() {
     }
@@ -65,28 +67,46 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView{
     }
 
     @Override
+    public void onDestroy() {
+        mPresenter.unsubcrible();
+        super.onDestroy();
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new OtherStoryPresenter(this);
         mAdapter = new OtherStoriesListAdapter(getContext(), mItemList);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mPresenter.getOtherStories(id);
-
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                isRefresh = true;
+                mPresenter.getOtherStories(id);
+            }
+        });
     }
 
     @Override
     public void onRequestError(String msg) {
-
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void loadStories(ThemesContent themesContent) {
+        if (isRefresh) {
+            mItemList.clear();
+            mAdapter.notifyDataSetChanged();
+        }
         mItemList.add(new OtherStoriesHeader(themesContent.getBackground(), themesContent.getDescription()));
         mItemList.add(new OtherStoriesSection(themesContent.getEditors().get(0)));
         mItemList.addAll(themesContent.getStories());
         mAdapter.notifyDataSetChanged();
-
+        mSwipeRefreshLayout.setRefreshing(false);
+        isRefresh = true;
     }
 }

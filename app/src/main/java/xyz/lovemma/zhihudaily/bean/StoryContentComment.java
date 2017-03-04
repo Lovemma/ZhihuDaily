@@ -1,10 +1,12 @@
 package xyz.lovemma.zhihudaily.bean;
 
+import xyz.lovemma.zhihudaily.utils.DateUtils;
+
 /**
  * Created by OO on 2017/2/24.
  */
 
-public class StoryContentComment {
+public class StoryContentComment implements BaseItem{
 
     /**
      * author : 少先大队委员长
@@ -48,8 +50,8 @@ public class StoryContentComment {
         this.avatar = avatar;
     }
 
-    public int getTime() {
-        return time;
+    public String getTime() {
+        return DateUtils.timestamp2Date(time);
     }
 
     public void setTime(int time) {

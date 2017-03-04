@@ -15,7 +15,7 @@ import xyz.lovemma.zhihudaily.widget.Banner.Banner;
  * Created by OO on 2017/2/15.
  */
 
-public class StoriesHeaderDelegete implements ItemViewDelegate<BaseItem> {
+public class StoriesHeaderDelegate implements ItemViewDelegate<BaseItem> {
     private Context mContext;
 
     @Override

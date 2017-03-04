@@ -5,7 +5,6 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import xyz.lovemma.zhihudaily.bean.Themes;
-import xyz.lovemma.zhihudaily.bean.ThemesContent;
 import xyz.lovemma.zhihudaily.mvp.biz.ThemeBiz;
 import xyz.lovemma.zhihudaily.mvp.view.IThemeView;
 
@@ -45,26 +44,4 @@ public class ThemePresenter extends IBasePresenter {
         addSubscription(subscription);
     }
 
-    public void getThemesContent(int id) {
-        Subscription subscription = mBiz.getThemesContent(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ThemesContent>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
-                    }
-
-                    @Override
-                    public void onNext(ThemesContent content) {
-                        mView.loadThemeContent(content);
-                    }
-                });
-        addSubscription(subscription);
-    }
 }

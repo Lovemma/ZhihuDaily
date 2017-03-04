@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
@@ -18,14 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.lovemma.zhihudaily.R;
+import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.BeforeStories;
 import xyz.lovemma.zhihudaily.bean.LatestStories;
-import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesHeader;
-import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesSection;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoriesPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoriesView;
-import xyz.lovemma.zhihudaily.bean.BaseItem;
+import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesHeader;
 import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesListAdapter;
+import xyz.lovemma.zhihudaily.ui.adapter.home.StoriesSection;
 
 public class DailyStoriesFragment extends Fragment implements IStoriesView {
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -36,6 +37,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
     private LoadMoreWrapper mLoadMoreWrapper;
     private String date;
     private boolean isRefresh;
+
     public DailyStoriesFragment() {
         // Required empty public constructor
     }
@@ -91,7 +93,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
 
     @Override
     public void onRequestError(String msg) {
-
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

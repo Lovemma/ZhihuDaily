@@ -34,4 +34,9 @@ public class DateUtils {
     public static String transform(String date) {
         return date2str(str2date(date));
     }
+
+    public static String timestamp2Date(long time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA);
+        return sdf.format(new Date(time * 1000));
+    }
 }

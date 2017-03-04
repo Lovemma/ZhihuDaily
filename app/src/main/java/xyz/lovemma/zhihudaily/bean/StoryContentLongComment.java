@@ -6,7 +6,7 @@ import java.util.List;
  * Created by OO on 2017/2/24.
  */
 
-public class StoryContentLongComment {
+public class StoryContentLongComment implements BaseItem{
 
     private List<StoryContentComment> comments;
 

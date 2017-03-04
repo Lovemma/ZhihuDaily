@@ -1,16 +1,17 @@
 package xyz.lovemma.zhihudaily.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -20,18 +21,27 @@ import xyz.lovemma.zhihudaily.bean.StoryContent;
 import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoryContentPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
+import xyz.lovemma.zhihudaily.utils.CalculateUtil;
 import xyz.lovemma.zhihudaily.utils.WebUtil;
-import xyz.lovemma.zhihudaily.widget.ActionProvider.StoryContentActionProvider;
 
-public class OtherStoryContentActivity extends AppCompatActivity implements IStoryContentView, MenuItem.OnMenuItemClickListener{
+public class OtherStoryContentActivity extends AppCompatActivity implements IStoryContentView {
     private Toolbar mToolbar;
     private WebView mWebView;
     private Menu mMenu;
-    private StoryContentActionProvider mCommentProvider;
-    private StoryContentActionProvider mFollowProvider;
-    private int id;
 
     private StoryContentPresenter mPresenter;
+
+    private View actionCommentView;
+    private View actionLikeView;
+    private ImageView commentImg;
+    private TextView commentText;
+    private TextView likeText;
+    private ImageView likeImg;
+
+    private int id;
+    private int commentNum;
+    private int longCommentNum;
+    private int shortCommentNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,11 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
     @Override
     protected void onDestroy() {
         mPresenter.unsubcrible();
+        if (mWebView != null) {
+            ((ViewGroup) mWebView.getParent()).removeView(mWebView);
+            mWebView.destroy();
+            mWebView = null;
+        }
         super.onDestroy();
     }
 
@@ -90,38 +105,34 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
         });
         mToolbar.inflateMenu(R.menu.menu_story_content);
         mMenu = mToolbar.getMenu();
-        mCommentProvider = (StoryContentActionProvider) MenuItemCompat.getActionProvider(mMenu.findItem(R.id.menu_comment));
-        mFollowProvider = (StoryContentActionProvider) MenuItemCompat.getActionProvider(mMenu.findItem(R.id.menu_follow));
-        mFollowProvider.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_thumb_up));
-        mCommentProvider.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_comment));
-        mMenu.findItem(R.id.menu_share).setOnMenuItemClickListener(this);
-        mMenu.findItem(R.id.menu_collect).setOnMenuItemClickListener(this);
-        mMenu.findItem(R.id.menu_comment).setOnMenuItemClickListener(this);
-        mMenu.findItem(R.id.menu_follow).setOnMenuItemClickListener(this);
+        mMenu.findItem(R.id.menu_comment).setActionView(R.layout.action_item);
+        mMenu.findItem(R.id.menu_follow).setActionView(R.layout.action_item);
 
+        actionCommentView = mMenu.findItem(R.id.menu_comment).getActionView();
+        actionLikeView = mMenu.findItem(R.id.menu_follow).getActionView();
+
+        commentImg = (ImageView) actionCommentView.findViewById(R.id.action_item_image);
+        commentText = (TextView) actionCommentView.findViewById(R.id.action_item_text);
+        likeImg = (ImageView) actionLikeView.findViewById(R.id.action_item_image);
+        likeText = (TextView) actionLikeView.findViewById(R.id.action_item_text);
+
+        actionCommentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OtherStoryContentActivity.this, CommentActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("comment_num", commentNum);
+                intent.putExtra("long_comment_num", longCommentNum);
+                intent.putExtra("short_comment_num", shortCommentNum);
+                startActivity(intent);
+            }
+        });
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_share:
-                Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.menu_collect:
-
-                break;
-            case R.id.menu_comment:
-                break;
-            case R.id.menu_follow:
-                break;
-        }
-        return false;
-    }
 
     @Override
     public void onRequestError(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -134,8 +145,13 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
 
     @Override
     public void loadStoryContentExtra(StoryContentExtra storyContentExtra) {
-        mCommentProvider.setNum(storyContentExtra.getComments());
+        commentNum = storyContentExtra.getComments();
+        longCommentNum = storyContentExtra.getLong_comments();
+        shortCommentNum = storyContentExtra.getShort_comments();
 
-        mFollowProvider.setNum(storyContentExtra.getPopularity());
+        commentImg.setImageResource(R.drawable.ic_comment);
+        commentText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getComments()));
+        likeImg.setImageResource(R.drawable.ic_thumb_up);
+        likeText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getPopularity()));
     }
 }

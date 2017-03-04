@@ -19,7 +19,7 @@ import xyz.lovemma.zhihudaily.ui.activity.OtherStoryContentActivity;
  * Created by OO on 2017/2/28.
  */
 
-public class OtherStoriesItemDelegete implements ItemViewDelegate<BaseItem> {
+public class OtherStoriesItemDelegate implements ItemViewDelegate<BaseItem> {
     private Context mContext;
 
     @Override

@@ -16,13 +16,12 @@ import java.util.List;
 import xyz.lovemma.zhihudaily.MainActivity;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
-import xyz.lovemma.zhihudaily.ui.adapter.drawer.DrawerHeader;
-import xyz.lovemma.zhihudaily.ui.adapter.drawer.DrawerHome;
 import xyz.lovemma.zhihudaily.bean.Themes;
-import xyz.lovemma.zhihudaily.bean.ThemesContent;
 import xyz.lovemma.zhihudaily.bean.ThemesOther;
 import xyz.lovemma.zhihudaily.mvp.presenter.ThemePresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IThemeView;
+import xyz.lovemma.zhihudaily.ui.adapter.drawer.DrawerHeader;
+import xyz.lovemma.zhihudaily.ui.adapter.drawer.DrawerHome;
 import xyz.lovemma.zhihudaily.ui.adapter.drawer.ThemesListAdapter;
 
 public class ChooseThemeFragment extends Fragment implements IThemeView {
@@ -58,7 +57,6 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
                 mAdapter.notifyDataSetChanged();
                 MainActivity activity = (MainActivity) getActivity();
                 if (position != 1) {
-//                    Toast.makeText(getContext(), "onItemViewClick:" + ((ThemesOther) mAdapter.getDatas().get(position)).getName(), Toast.LENGTH_SHORT).show();
                     int id = ((ThemesOther) mAdapter.getDatas().get(position)).getId();
                     activity.switchFragment(id, MainActivity.DRAWER_OTHER,position);
                 } else {
@@ -85,7 +83,7 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
 
     @Override
     public void onRequestError(String msg) {
-
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -94,10 +92,5 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
         mList.add(new DrawerHome());
         mList.addAll(themes.getOthers());
         mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void loadThemeContent(ThemesContent content) {
-
     }
 }
