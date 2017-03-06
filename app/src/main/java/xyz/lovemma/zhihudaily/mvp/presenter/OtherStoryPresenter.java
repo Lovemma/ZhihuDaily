@@ -33,7 +33,7 @@ public class OtherStoryPresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getOtherStories 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override

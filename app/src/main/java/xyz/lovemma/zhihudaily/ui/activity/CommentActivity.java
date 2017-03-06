@@ -2,7 +2,6 @@ package xyz.lovemma.zhihudaily.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -63,7 +62,7 @@ public class CommentActivity extends AppCompatActivity implements ICommentConten
         mAdapter = new CommentAdapter(this, mItemList);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_comment);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
+        mRecyclerView.addItemDecoration(new xyz.lovemma.zhihudaily.widget.DividerItemDecoration(this, xyz.lovemma.zhihudaily.widget.DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setAdapter(mAdapter);
     }
 

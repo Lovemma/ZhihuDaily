@@ -1,5 +1,6 @@
 package xyz.lovemma.zhihudaily.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoryContentPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 import xyz.lovemma.zhihudaily.utils.CalculateUtil;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 import xyz.lovemma.zhihudaily.utils.WebUtil;
 
 public class OtherStoryContentActivity extends AppCompatActivity implements IStoryContentView {
@@ -37,11 +39,13 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
     private TextView commentText;
     private TextView likeText;
     private ImageView likeImg;
+    private Context mContext;
 
     private int id;
     private int commentNum;
     private int longCommentNum;
     private int shortCommentNum;
+    private int likeNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
     private void initView() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mWebView = (WebView) findViewById(R.id.webView);
-
+        mContext = OtherStoryContentActivity.this;
         mPresenter = new StoryContentPresenter(this);
         initWebView();
         initToolBar();
@@ -127,6 +131,22 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
                 startActivity(intent);
             }
         });
+        actionLikeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
+                    likeImg.setImageResource(R.drawable.ic_thumb_up);
+                    likeText.setText(CalculateUtil.CalculatePraise(--likeNum));
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id), false);
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", false);
+                } else {
+                    likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
+                    likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id), true);
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", true);
+                }
+            }
+        });
     }
 
 
@@ -148,10 +168,16 @@ public class OtherStoryContentActivity extends AppCompatActivity implements ISto
         commentNum = storyContentExtra.getComments();
         longCommentNum = storyContentExtra.getLong_comments();
         shortCommentNum = storyContentExtra.getShort_comments();
+        likeNum = storyContentExtra.getPopularity();
 
         commentImg.setImageResource(R.drawable.ic_comment);
         commentText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getComments()));
-        likeImg.setImageResource(R.drawable.ic_thumb_up);
-        likeText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getPopularity()));
+        if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id) + "isOnClick", false)) {
+            likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
+            likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
+        } else {
+            likeImg.setImageResource(R.drawable.ic_thumb_up);
+            likeText.setText(CalculateUtil.CalculatePraise(likeNum));
+        }
     }
 }

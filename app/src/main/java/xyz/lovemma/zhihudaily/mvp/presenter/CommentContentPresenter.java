@@ -34,7 +34,7 @@ public class CommentContentPresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getStoryContentLongComments 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override
@@ -57,7 +57,7 @@ public class CommentContentPresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getStoryContentShortComments 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override

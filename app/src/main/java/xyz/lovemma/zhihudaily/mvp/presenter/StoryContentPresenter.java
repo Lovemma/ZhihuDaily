@@ -34,7 +34,7 @@ public class StoryContentPresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getStoryContent 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override
@@ -57,7 +57,7 @@ public class StoryContentPresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getStoryContentExtra 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override

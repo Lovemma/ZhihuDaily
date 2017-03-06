@@ -11,7 +11,7 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.StoryContentComment;
-import xyz.lovemma.zhihudaily.utils.CircleTransform;
+import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 /**
  * Created by OO on 2017/3/4.

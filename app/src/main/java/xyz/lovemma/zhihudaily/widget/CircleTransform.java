@@ -1,4 +1,4 @@
-package xyz.lovemma.zhihudaily.utils;
+package xyz.lovemma.zhihudaily.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;

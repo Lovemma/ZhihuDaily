@@ -33,7 +33,7 @@ public class ThemePresenter extends IBasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.onRequestError("数据加载失败ヽ(≧Д≦)ノ");
+                        mView.onRequestError("getThemesList 数据加载失败ヽ(≧Д≦)ノ");
                     }
 
                     @Override

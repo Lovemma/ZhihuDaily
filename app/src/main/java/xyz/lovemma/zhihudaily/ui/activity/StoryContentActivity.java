@@ -1,9 +1,11 @@
 package xyz.lovemma.zhihudaily.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
 import xyz.lovemma.zhihudaily.mvp.presenter.StoryContentPresenter;
 import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
 import xyz.lovemma.zhihudaily.utils.CalculateUtil;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 import xyz.lovemma.zhihudaily.utils.WebUtil;
 
 public class StoryContentActivity extends AppCompatActivity implements IStoryContentView {
@@ -38,6 +41,7 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
     private int commentNum;
     private int longCommentNum;
     private int shortCommentNum;
+    private int likeNum;
 
     private View actionCommentView;
     private View actionLikeView;
@@ -49,11 +53,13 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
 
     private StoryContentPresenter mPresenter;
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_content);
-
+        mContext = this;
         initView();
         initData();
     }
@@ -70,7 +76,6 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
     }
 
     private void initData() {
-        id = getIntent().getIntExtra("id", 0);
         if (id != 0) {
             mPresenter.getStoryContent(id);
             mPresenter.getStoryContentExtra(id);
@@ -79,13 +84,16 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
         }
     }
 
+    private static final String TAG = "StoryContentActivity";
+
     private void initView() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         imageSouce = (TextView) findViewById(R.id.image_source);
         mImageView = (ImageView) findViewById(R.id.image);
         title = (TextView) findViewById(R.id.title);
         mWebView = (WebView) findViewById(R.id.webView);
-
+        id = getIntent().getIntExtra("id", 0);
+        Log.d(TAG, "initView: id" + id);
         mPresenter = new StoryContentPresenter(this);
         initWebView();
         initToolBar();
@@ -125,8 +133,24 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
                 startActivity(intent);
             }
         });
-
+        actionLikeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
+                    likeImg.setImageResource(R.drawable.ic_thumb_up);
+                    likeText.setText(CalculateUtil.CalculatePraise(--likeNum));
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id), false);
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", false);
+                } else {
+                    likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
+                    likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id), true);
+                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", true);
+                }
+            }
+        });
     }
+
 
     private void initWebView() {
         WebSettings settings = mWebView.getSettings();
@@ -168,11 +192,17 @@ public class StoryContentActivity extends AppCompatActivity implements IStoryCon
         commentNum = storyContentExtra.getComments();
         longCommentNum = storyContentExtra.getLong_comments();
         shortCommentNum = storyContentExtra.getShort_comments();
+        likeNum = storyContentExtra.getPopularity();
 
         commentImg.setImageResource(R.drawable.ic_comment);
         commentText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getComments()));
-        likeImg.setImageResource(R.drawable.ic_thumb_up);
-        likeText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getPopularity()));
+        if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id) + "isOnClick", false)) {
+            likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
+            likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
+        } else {
+            likeImg.setImageResource(R.drawable.ic_thumb_up);
+            likeText.setText(CalculateUtil.CalculatePraise(likeNum));
+        }
     }
 
 }
