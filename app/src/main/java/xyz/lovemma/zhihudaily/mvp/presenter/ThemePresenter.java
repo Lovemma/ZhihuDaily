@@ -43,5 +43,4 @@ public class ThemePresenter extends IBasePresenter {
                 });
         addSubscription(subscription);
     }
-
 }

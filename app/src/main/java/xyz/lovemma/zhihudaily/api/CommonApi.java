@@ -4,6 +4,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
 import xyz.lovemma.zhihudaily.bean.BeforeStories;
+import xyz.lovemma.zhihudaily.bean.BeforeThemeStories;
 import xyz.lovemma.zhihudaily.bean.LatestStories;
 import xyz.lovemma.zhihudaily.bean.StoryContent;
 import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
@@ -40,4 +41,7 @@ public interface CommonApi {
 
     @GET("/api/4/theme/{id}")
     Observable<ThemesContent> getThemesContent(@Path("id") int id);
+
+    @GET("/api/4/theme/{id}/before/{story_id}")
+    Observable<BeforeThemeStories> getBeforeThemesContent(@Path("id") int id, @Path("story_id") int story_id);
 }

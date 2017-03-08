@@ -1,6 +1,7 @@
 package xyz.lovemma.zhihudaily.mvp.biz;
 
 import rx.Observable;
+import xyz.lovemma.zhihudaily.bean.BeforeThemeStories;
 import xyz.lovemma.zhihudaily.bean.ThemesContent;
 
 /**
@@ -9,4 +10,6 @@ import xyz.lovemma.zhihudaily.bean.ThemesContent;
 
 public interface IOtherStoriesBiz {
     Observable<ThemesContent> getOtherStories(int id);
+
+    Observable<BeforeThemeStories> getMoreThemeStories(int id, int story_id);
 }
