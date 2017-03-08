@@ -59,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(getLayoutId());
         initView();
         initData();
@@ -78,9 +79,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
     protected abstract int getLayoutId();
 
     private void initView() {
+        setHeaderImg();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mWebView = (WebView) findViewById(R.id.webView);
-        setHeaderImg();
         id = getIntent().getIntExtra("id", 0);
         mPresenter = new StoryContentPresenter(this);
         initToolBar();

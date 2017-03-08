@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.StoryContentActivity"/>
+        <activity
+            android:name=".ui.activity.StoryContentActivity"
+            android:theme="@style/StoryContentTheme"/>
         <activity android:name=".ui.activity.OtherStoryContentActivity"/>
         <activity android:name=".ui.activity.CommentActivity"/>
     </application>
