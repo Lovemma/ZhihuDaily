@@ -103,7 +103,7 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
             mAdapter.notifyDataSetChanged();
         }
         mItemList.add(new OtherStoriesHeader(themesContent.getBackground(), themesContent.getDescription()));
-        mItemList.add(new OtherStoriesSection(themesContent.getEditors().get(0)));
+        mItemList.add(new OtherStoriesSection(themesContent.getEditors()));
         mItemList.addAll(themesContent.getStories());
         mAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);

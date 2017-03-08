@@ -1,7 +1,11 @@
 package xyz.lovemma.zhihudaily.ui.adapter.other;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -10,6 +14,8 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
+import xyz.lovemma.zhihudaily.bean.Editors;
+import xyz.lovemma.zhihudaily.ui.activity.EditorListActivity;
 import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 /**
@@ -32,12 +38,26 @@ public class OtherStoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
     @Override
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
         mContext = holder.getConvertView().getContext();
-        OtherStoriesSection section = (OtherStoriesSection) baseItem;
-        ImageView imageView = holder.getView(R.id.editor_avatar);
-        Glide.with(mContext)
-                .load(section.getEditors().getAvatar())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(mContext))
-                .into(imageView);
+        final OtherStoriesSection section = (OtherStoriesSection) baseItem;
+        LinearLayout editorGroup = holder.getView(R.id.editor_group);
+        for (Editors editors : section.getEditors()) {
+            ImageView imageView = new ImageView(mContext);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            imageView.setLayoutParams(params);
+            Glide.with(mContext)
+                    .load(editors.getAvatar())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(mContext))
+                    .into(imageView);
+            editorGroup.addView(imageView);
+        }
+        holder.getView(R.id.editors).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, EditorListActivity.class);
+                intent.putParcelableArrayListExtra("editorList",  section.getEditors());
+                mContext.startActivity(intent);
+            }
+        });
     }
 }
