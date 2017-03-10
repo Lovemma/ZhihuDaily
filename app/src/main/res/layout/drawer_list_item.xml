@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="center_vertical"
-    android:layout_height="48dp">
+    android:layout_height="48dp"
+    android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/theme_title"
@@ -15,6 +15,7 @@
         android:textSize="16sp"/>
 
     <ImageView
+        android:id="@+id/add_follow"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"

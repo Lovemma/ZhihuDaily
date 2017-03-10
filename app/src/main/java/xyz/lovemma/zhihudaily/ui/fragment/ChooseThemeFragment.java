@@ -31,6 +31,8 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
     private ThemePresenter mPresenter;
     private List<BaseItem> mList = new ArrayList<>();
     private ThemesListAdapter mAdapter;
+    private OtherStoriesFragment mOtherStoriesFragment;
+    private DailyStoriesFragment mDailyStoriesFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,10 +47,19 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
         navView = (RecyclerView) view.findViewById(R.id.nav_view);
         mPresenter = new ThemePresenter(this);
         mAdapter = new ThemesListAdapter(getContext(), mList);
+        mDailyStoriesFragment = new DailyStoriesFragment();
         mAdapter.setOnItemClickListener(new ThemesListAdapter.OnItemClickListener() {
+
             @Override
-            public void onDrawerHeaderClick() {
-                Toast.makeText(getContext(), "onDrawerHeaderClick", Toast.LENGTH_SHORT).show();
+            public void onDrawerHeaderClick(View view) {
+                switch (view.getId()) {
+                    case R.id.download:
+                        Toast.makeText(getContext(), "正在离线下载最新内容", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        ((MainActivity)getActivity()).goToLogin();
+                        break;
+                }
             }
 
             @Override
@@ -58,11 +69,18 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
                 MainActivity activity = (MainActivity) getActivity();
                 if (position != 1) {
                     int id = ((ThemesOther) mAdapter.getDatas().get(position)).getId();
-                    activity.switchFragment(id, MainActivity.DRAWER_OTHER,position);
+                    String title = ((ThemesOther) mAdapter.getDatas().get(position)).getName();
+                    mOtherStoriesFragment = OtherStoriesFragment.newInstance(id);
+                    activity.switchFragment(mOtherStoriesFragment, title);
                 } else {
-                    activity.switchFragment();
+                    activity.switchFragment(mDailyStoriesFragment, "首页");
                 }
                 getActivity().onBackPressed();
+            }
+
+            @Override
+            public void onFollowClick() {
+                Toast.makeText(getContext(),"关注成功，关注内容将在首页呈现",Toast.LENGTH_SHORT).show();
             }
         });
         init();
@@ -78,7 +96,12 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
     @Override
     public void onDestroy() {
         mPresenter.unsubcrible();
+        mList.clear();
         super.onDestroy();
+    }
+
+    public ThemesListAdapter getAdapter() {
+        return mAdapter;
     }
 
     @Override

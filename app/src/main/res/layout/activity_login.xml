@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    tools:context="xyz.lovemma.zhihudaily.ui.activity.LoginActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="60dp"
+        android:src="@drawable/login_logo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:text="使用微博登陆"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+
+    <Button
+        style="@style/ButtonStyle"
+        android:drawableLeft="@drawable/login_sina_weibo"
+        android:text="新浪微博"/>
+
+    <Button
+        style="@style/ButtonStyle"
+        android:drawableLeft="@drawable/login_tencent_weibo"
+        android:text="腾讯微博"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_margin="14dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:text="知乎日报不会未经同意通过你的微博账号发布任何消息"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        />
+</LinearLayout>

@@ -22,7 +22,6 @@
     </LinearLayout>
 
     <fragment
-
         android:id="@+id/choose_theme"
         android:name="xyz.lovemma.zhihudaily.ui.fragment.ChooseThemeFragment"
         android:layout_width="match_parent"

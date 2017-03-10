@@ -27,5 +27,6 @@ public class ThemeItemDelegate implements ItemViewDelegate<BaseItem> {
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
         ThemesOther themesItem = (ThemesOther) baseItem;
         holder.setText(R.id.theme_title, themesItem.getName());
+
     }
 }

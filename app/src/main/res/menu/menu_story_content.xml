@@ -17,7 +17,7 @@
         android:title="@string/menu_comment"
         app:showAsAction="always|withText"/>
     <item
-        android:id="@+id/menu_follow"
+        android:id="@+id/menu_like"
         android:icon="@drawable/ic_thumb_up"
         android:title="@string/menu_follow"
         app:showAsAction="always|withText"/>

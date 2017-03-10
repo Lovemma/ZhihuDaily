@@ -69,7 +69,9 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.getBeforeDaily(date);
+                if (date != null) {
+                    mPresenter.getBeforeDaily(date);
+                }
             }
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -88,6 +90,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
     @Override
     public void onDestroy() {
         mPresenter.unsubcrible();
+        mItemList.clear();
         super.onDestroy();
     }
 

@@ -110,14 +110,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
         mToolbar.inflateMenu(R.menu.menu_story_content);
         mMenu = mToolbar.getMenu();
         mMenu.findItem(R.id.menu_comment).setActionView(R.layout.action_item);
-        mMenu.findItem(R.id.menu_follow).setActionView(R.layout.action_item);
+        mMenu.findItem(R.id.menu_like).setActionView(R.layout.action_item);
 
         actionCommentView = mMenu.findItem(R.id.menu_comment).getActionView();
         commentImg = (ImageView) actionCommentView.findViewById(R.id.action_item_image);
         commentText = (TextView) actionCommentView.findViewById(R.id.action_item_text);
         actionCommentView.setOnClickListener(this);
 
-        actionLikeView = mMenu.findItem(R.id.menu_follow).getActionView();
+        actionLikeView = mMenu.findItem(R.id.menu_like).getActionView();
         likeImg = (ImageView) actionLikeView.findViewById(R.id.action_item_image);
         likeText = (TextView) actionLikeView.findViewById(R.id.action_item_text);
         actionLikeView.setOnClickListener(this);
@@ -150,17 +150,15 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
                 intent.putExtra("short_comment_num", shortCommentNum);
                 startActivity(intent);
                 break;
-            case R.id.menu_follow:
+            case R.id.menu_like:
                 if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
                     likeImg.setImageResource(R.drawable.ic_thumb_up);
                     likeText.setText(CalculateUtil.CalculatePraise(--likeNum));
                     SharedPreferencesUtils.put(mContext, Integer.toString(id), false);
-                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", false);
                 } else {
                     likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
                     likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
                     SharedPreferencesUtils.put(mContext, Integer.toString(id), true);
-                    SharedPreferencesUtils.put(mContext, Integer.toString(id) + "isOnClick", true);
                 }
                 break;
         }
@@ -207,7 +205,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
 
         commentImg.setImageResource(R.drawable.ic_comment);
         commentText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getComments()));
-        if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id) + "isOnClick", false)) {
+        if (SharedPreferencesUtils.contains(mContext, Integer.toString(id))
+                && (boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
             likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
             likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
         } else {

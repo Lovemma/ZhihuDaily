@@ -9,6 +9,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ import xyz.lovemma.zhihudaily.mvp.view.IOtherStoriesView;
 import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesHeader;
 import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesListAdapter;
 import xyz.lovemma.zhihudaily.ui.adapter.other.OtherStoriesSection;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 public class OtherStoriesFragment extends Fragment implements IOtherStoriesView {
 
@@ -60,6 +64,7 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
         if (getArguments() != null) {
             id = getArguments().getInt(LIST_ID);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -69,6 +74,12 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipRefreshlayout);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        mItemList.clear();
+        super.onDestroyView();
     }
 
     @Override
@@ -87,7 +98,9 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.getMoreThemeStories(id, story_id);
+                if (story_id != 0) {
+                    mPresenter.getMoreThemeStories(id, story_id);
+                }
             }
         });
 
@@ -102,6 +115,37 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
                 mPresenter.getOtherStories(id);
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_other_story, menu);
+        if (SharedPreferencesUtils.contains(getContext(), Integer.toString(id))
+                && (boolean) SharedPreferencesUtils.get(getContext(), Integer.toString(id), false)) {
+            menu.findItem(R.id.action_follow).setIcon(R.drawable.ic_remove_follow);
+        } else {
+            menu.findItem(R.id.action_follow).setIcon(R.drawable.ic_add_follow);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_follow:
+                if ((boolean) SharedPreferencesUtils.get(getContext(), Integer.toString(id), false)) {
+                    SharedPreferencesUtils.put(getContext(), Integer.toString(id), false);
+                    Toast.makeText(getContext(), "已取消关注", Toast.LENGTH_SHORT).show();
+                    item.setIcon(R.drawable.ic_add_follow);
+                } else {
+                    SharedPreferencesUtils.put(getContext(), Integer.toString(id), true);
+                    Toast.makeText(getContext(), "已关注", Toast.LENGTH_SHORT).show();
+                    item.setIcon(R.drawable.ic_remove_follow);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

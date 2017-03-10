@@ -6,6 +6,7 @@
         android:icon="@drawable/ic_notifications"
         android:title="@string/action_notification"
         app:showAsAction="always"/>
+
     <item
         android:id="@+id/action_night"
         android:title="@string/action_night"
