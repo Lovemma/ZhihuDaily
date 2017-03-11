@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.lovemma.zhihudaily.MainActivity;
+import xyz.lovemma.zhihudaily.ui.activity.MainActivity;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.Themes;

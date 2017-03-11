@@ -126,6 +126,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
                 return false;
             }
         });
+        menu.findItem(R.id.menu_collect).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                goToLogin();
+                return false;
+            }
+        });
     }
 
     private void shareToOther() {
@@ -134,6 +141,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
         intent.putExtra(Intent.EXTRA_TEXT, mStoryContent.getShare_url());
         intent.setType("text/plain");
         startActivity(Intent.createChooser(intent, "分享到..."));
+    }
+
+    private void goToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -41,7 +41,7 @@
             android:layout_toLeftOf="@+id/image"
             android:layout_toStartOf="@+id/image"
             android:maxLines="3"
-            android:textColor="@color/text_color"
+            android:textColor="@android:color/white"
             android:textSize="18sp"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

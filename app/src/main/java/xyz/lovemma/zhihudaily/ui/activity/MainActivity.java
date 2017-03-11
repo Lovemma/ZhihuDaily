@@ -1,4 +1,4 @@
-package xyz.lovemma.zhihudaily;
+package xyz.lovemma.zhihudaily.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import xyz.lovemma.zhihudaily.ui.activity.LoginActivity;
+import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.ui.fragment.ChooseThemeFragment;
 import xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment;
 import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
