@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/drawer_header"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@color/drawer_header">
+    android:padding="8dp">
 
     <LinearLayout
         android:id="@+id/login"
@@ -30,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请登录"
-            android:textColor="@android:color/white"
+            android:textColor="@color/drawer_header_text"
             android:textSize="14sp"/>
     </LinearLayout>
 
@@ -48,7 +47,7 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_star"
             android:text="我的收藏"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/drawer_header_text"/>
 
         <Button
             android:id="@+id/download"
@@ -58,6 +57,6 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_download"
             android:text="离线下载"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/drawer_header_text"/>
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -30,7 +32,8 @@ public class SharedPreferencesUtils {
         } else {
             editor.putString(key, object.toString());
         }
-        editor.apply();
+//        editor.apply();
+        SharedPreferencesCompat.apply(editor);
     }
 
 
@@ -56,14 +59,14 @@ public class SharedPreferencesUtils {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
-        editor.commit();
+        SharedPreferencesCompat.apply(editor);
     }
 
     public static void clear(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
-        editor.commit();
+        SharedPreferencesCompat.apply(editor);
     }
 
     public static boolean contains(Context context, String key) {
@@ -76,4 +79,40 @@ public class SharedPreferencesUtils {
         return sharedPreferences.getAll();
     }
 
+    private static class SharedPreferencesCompat {
+
+        //查看SharedPreferences是否有apply方法
+        private static final Method sApplyMethod = findApply();
+
+        private static Method findApply() {
+
+            try {
+                Class cls = SharedPreferences.class;
+                return cls.getMethod("apply");
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        /**
+         * 如果找到则使用apply执行，否则使用commit
+         */
+        public static void apply(SharedPreferences.Editor editor) {
+
+            try {
+                if (sApplyMethod != null) {
+                    sApplyMethod.invoke(editor);
+                    return;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+            editor.commit();
+        }
+
+    }
 }

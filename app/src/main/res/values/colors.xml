@@ -6,5 +6,9 @@
 
     <color name="drawer_header">#0099ff</color>
     <color name="drawer_select">#EEEEEE</color>
-    <color name="drawer_normal">#ffffff</color>
+    <color name="drawer_normal">@android:color/white</color>
+    <color name="drawer_text">@android:color/black</color>
+    <color name="drawer_header_text">@android:color/white</color>
+
+    <color name="text_color">@android:color/black</color>
 </resources>

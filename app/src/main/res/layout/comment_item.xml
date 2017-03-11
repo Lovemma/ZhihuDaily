@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="name"
-            android:textColor="@android:color/black"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@id/avatar"
         android:text="content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_color"
         android:textSize="16sp"/>
 
     <TextView

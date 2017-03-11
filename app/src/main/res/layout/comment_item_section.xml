@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:paddingLeft="12dp"
         android:paddingStart="12dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_color"
         android:textSize="16sp"/>
 
     <ImageView

@@ -190,7 +190,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
         loadHeaderImg(storyContent);
         String body = storyContent.getBody();
         List<String> css = storyContent.getCss();
-        String data = WebUtil.buildHtmlWithCss(body, css, false);
+        boolean night_mode = (boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false);
+        String data = WebUtil.buildHtmlWithCss(body, css, night_mode);
         mWebView.loadData(data, WebUtil.MIME_TYPE, WebUtil.ENCODING);
     }
 

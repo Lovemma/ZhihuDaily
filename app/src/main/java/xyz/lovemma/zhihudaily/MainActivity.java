@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,8 +16,9 @@ import android.view.MenuItem;
 import xyz.lovemma.zhihudaily.ui.activity.LoginActivity;
 import xyz.lovemma.zhihudaily.ui.fragment.ChooseThemeFragment;
 import xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
     private DailyStoriesFragment mStoriesFragment;
     private Fragment currentFragment = new Fragment();
     private DrawerLayout mDrawer;
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SharedPreferencesUtils.contains(getApplicationContext(), "night_mode")
+                && (boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
         setContentView(R.layout.activity_main);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,7 +56,14 @@ public class MainActivity extends AppCompatActivity  {
                 goToLogin();
                 break;
             case R.id.action_night:
-
+                if ((boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false)) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    SharedPreferencesUtils.put(getApplicationContext(), "night_mode", false);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    SharedPreferencesUtils.put(getApplicationContext(), "night_mode", true);
+                }
+                recreate();
                 break;
             case R.id.action_setting:
 
@@ -89,22 +102,11 @@ public class MainActivity extends AppCompatActivity  {
         if (currentFragment == fragment) {
             return;
         }
-        if (fragment.isAdded()) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .hide(currentFragment)
-                    .show(fragment)
-                    .commit();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .hide(currentFragment)
-                    .add(R.id.container, fragment)
-                    .show(fragment)
-                    .commit();
-        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.container, fragment)
+                .commit();
         currentFragment = fragment;
         setTitle(title);
     }
