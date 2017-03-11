@@ -8,7 +8,7 @@ import xyz.lovemma.zhihudaily.utils.DateUtils;
  */
 
 public class StoriesSection implements BaseItem {
-    private String date;
+    private final String date;
 
     public StoriesSection(String date) {
         this.date = date;

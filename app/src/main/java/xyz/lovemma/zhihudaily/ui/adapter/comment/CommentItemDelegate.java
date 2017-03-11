@@ -17,8 +17,7 @@ import xyz.lovemma.zhihudaily.widget.CircleTransform;
  * Created by OO on 2017/3/4.
  */
 
-public class CommentItemDelegate implements ItemViewDelegate<BaseItem> {
-    private Context mContext;
+class CommentItemDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public int getItemViewLayoutId() {
@@ -32,12 +31,12 @@ public class CommentItemDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
-        mContext = holder.getConvertView().getContext();
+        Context context = holder.getConvertView().getContext();
         StoryContentComment comment = (StoryContentComment) baseItem;
-        Glide.with(mContext)
+        Glide.with(context)
                 .load(comment.getAvatar())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(mContext))
+                .transform(new CircleTransform(context))
                 .into((ImageView) holder.getView(R.id.avatar));
         holder.setText(R.id.author, comment.getAuthor());
         holder.setText(R.id.content, comment.getContent());

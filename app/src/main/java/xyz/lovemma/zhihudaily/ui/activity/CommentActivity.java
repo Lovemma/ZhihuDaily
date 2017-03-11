@@ -24,15 +24,12 @@ import xyz.lovemma.zhihudaily.ui.adapter.comment.CommentSection;
 
 public class CommentActivity extends AppCompatActivity implements ICommentContentView {
 
-    private RecyclerView mRecyclerView;
-    private Toolbar mToolbar;
     private CommentAdapter mAdapter;
-    private List<BaseItem> mItemList = new ArrayList<>();
+    private final List<BaseItem> mItemList = new ArrayList<>();
 
     private CommentContentPresenter mPresenter;
 
     private int id;
-    private int commentNum;
     private int longCommentNum;
     private int shortCommentNum;
 
@@ -46,7 +43,7 @@ public class CommentActivity extends AppCompatActivity implements ICommentConten
 
     @Override
     protected void onDestroy() {
-        mPresenter.unsubcrible();
+        mPresenter.unSubcrible();
         super.onDestroy();
     }
 
@@ -56,36 +53,37 @@ public class CommentActivity extends AppCompatActivity implements ICommentConten
         return true;
     }
 
-    public void initView() {
+    private void initView() {
         initToolBar();
         mPresenter = new CommentContentPresenter(this);
         mAdapter = new CommentAdapter(this, mItemList);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_comment);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new xyz.lovemma.zhihudaily.widget.DividerItemDecoration(this, xyz.lovemma.zhihudaily.widget.DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_comment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new xyz.lovemma.zhihudaily.widget.DividerItemDecoration(this, xyz.lovemma.zhihudaily.widget.DividerItemDecoration.VERTICAL_LIST));
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void initData() {
         id = getIntent().getIntExtra("id", 0);
-        commentNum = getIntent().getIntExtra("comment_num", 0);
+        int commentNum = getIntent().getIntExtra("comment_num", 0);
         longCommentNum = getIntent().getIntExtra("long_comment_num", 0);
         shortCommentNum = getIntent().getIntExtra("short_comment_num", 0);
         if (id != 0) {
             mPresenter.getStoryContentLongComments(id);
-//            mPresenter.getStoryContentShortComments(id);
         } else {
             Toast.makeText(this, "数据加载出错", Toast.LENGTH_SHORT).show();
         }
-        getSupportActionBar().setTitle(commentNum + "条点评");
+        setTitle(commentNum + "条点评");
     }
 
     private void initToolBar() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

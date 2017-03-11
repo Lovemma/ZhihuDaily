@@ -33,14 +33,11 @@ import xyz.lovemma.zhihudaily.utils.WebUtil;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements IStoryContentView, View.OnClickListener {
-    private Context mContext = this;
+    private final Context mContext = this;
 
     private Toolbar mToolbar;
     private WebView mWebView;
-    private Menu mMenu;
 
-    private View actionCommentView;
-    private View actionLikeView;
     private ImageView commentImg;
     private TextView commentText;
     private TextView likeText;
@@ -50,11 +47,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
 
     private StoryContent mStoryContent;
 
-    protected int id;
-    protected int commentNum;
-    protected int longCommentNum;
-    protected int shortCommentNum;
-    protected int likeNum;
+    private int id;
+    private int commentNum;
+    private int longCommentNum;
+    private int shortCommentNum;
+    private int likeNum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
 
     @Override
     protected void onDestroy() {
-        mPresenter.unsubcrible();
+        mPresenter.unSubcrible();
         if (mWebView != null) {
             ((ViewGroup) mWebView.getParent()).removeView(mWebView);
             mWebView.destroy();
@@ -108,21 +105,21 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
             }
         });
         mToolbar.inflateMenu(R.menu.menu_story_content);
-        mMenu = mToolbar.getMenu();
-        mMenu.findItem(R.id.menu_comment).setActionView(R.layout.action_item);
-        mMenu.findItem(R.id.menu_like).setActionView(R.layout.action_item);
+        Menu menu = mToolbar.getMenu();
+        menu.findItem(R.id.menu_comment).setActionView(R.layout.action_item);
+        menu.findItem(R.id.menu_like).setActionView(R.layout.action_item);
 
-        actionCommentView = mMenu.findItem(R.id.menu_comment).getActionView();
+        View actionCommentView = menu.findItem(R.id.menu_comment).getActionView();
         commentImg = (ImageView) actionCommentView.findViewById(R.id.action_item_image);
         commentText = (TextView) actionCommentView.findViewById(R.id.action_item_text);
         actionCommentView.setOnClickListener(this);
 
-        actionLikeView = mMenu.findItem(R.id.menu_like).getActionView();
+        View actionLikeView = menu.findItem(R.id.menu_like).getActionView();
         likeImg = (ImageView) actionLikeView.findViewById(R.id.action_item_image);
         likeText = (TextView) actionLikeView.findViewById(R.id.action_item_text);
         actionLikeView.setOnClickListener(this);
 
-        mMenu.findItem(R.id.menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.findItem(R.id.menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 shareToOther();

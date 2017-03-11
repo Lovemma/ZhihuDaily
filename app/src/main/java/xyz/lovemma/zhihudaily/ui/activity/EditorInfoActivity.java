@@ -13,7 +13,6 @@ import android.widget.Toast;
 import xyz.lovemma.zhihudaily.R;
 
 public class EditorInfoActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
     private WebView mWebView;
 
     @Override
@@ -34,16 +33,16 @@ public class EditorInfoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mWebView = (WebView) findViewById(R.id.webView);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        mToolbar.setTitle("主编资料");
+        toolbar.setTitle("主编资料");
         initWebView();
         int id = getIntent().getIntExtra("editor_id", 0);
         if (id != 0) {

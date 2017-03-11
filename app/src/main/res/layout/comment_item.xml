@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
@@ -8,7 +9,8 @@
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="36dp"
-        android:layout_height="36dp"/>
+        android:layout_height="36dp"
+        tools:ignore="ContentDescription"/>
 
     <LinearLayout
         android:id="@+id/ll_firstLine"
@@ -23,7 +25,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="name"
             android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -32,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_thumb_up_grey"/>
+            android:src="@drawable/ic_thumb_up_grey"
+            tools:ignore="ContentDescription"/>
 
         <TextView
             android:id="@+id/likes"
@@ -40,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="4dp"
-            android:text="20"
             android:textSize="12sp"/>
     </LinearLayout>
 
@@ -53,7 +54,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@id/avatar"
-        android:text="content"
         android:textColor="@color/text_color"
         android:textSize="16sp"/>
 
@@ -63,6 +63,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/content"
         android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/avatar"
-        android:text="2017-03-04 15:12:43"/>
+        android:layout_toRightOf="@id/avatar"/>
 </RelativeLayout>

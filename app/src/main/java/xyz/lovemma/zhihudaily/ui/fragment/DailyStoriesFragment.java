@@ -32,8 +32,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private StoriesPresenter mPresenter;
-    private StoriesListAdapter mAdapter;
-    private List<BaseItem> mItemList = new ArrayList<>();
+    private final List<BaseItem> mItemList = new ArrayList<>();
     private LoadMoreWrapper mLoadMoreWrapper;
     private String date;
     private boolean isRefresh;
@@ -46,7 +45,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_daily_stories, container, false);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipRefreshlayout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         return view;
     }
@@ -60,8 +59,8 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
 
     private void initData() {
         mPresenter = new StoriesPresenter(this);
-        mAdapter = new StoriesListAdapter(getContext(), mItemList);
-        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
+        StoriesListAdapter adapter = new StoriesListAdapter(getContext(), mItemList);
+        mLoadMoreWrapper = new LoadMoreWrapper(adapter);
     }
 
     private void initView() {
@@ -89,7 +88,7 @@ public class DailyStoriesFragment extends Fragment implements IStoriesView {
 
     @Override
     public void onDestroy() {
-        mPresenter.unsubcrible();
+        mPresenter.unSubcrible();
         mItemList.clear();
         super.onDestroy();
     }

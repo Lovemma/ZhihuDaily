@@ -13,8 +13,8 @@ import xyz.lovemma.zhihudaily.mvp.view.IThemeView;
  */
 
 public class ThemePresenter extends IBasePresenter {
-    private IThemeView mView;
-    private ThemeBiz mBiz;
+    private final IThemeView mView;
+    private final ThemeBiz mBiz;
 
     public ThemePresenter(IThemeView view) {
         mView = view;

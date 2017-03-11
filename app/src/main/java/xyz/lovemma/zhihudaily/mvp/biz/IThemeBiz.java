@@ -7,6 +7,6 @@ import xyz.lovemma.zhihudaily.bean.Themes;
  * Created by OO on 2017/2/24.
  */
 
-public interface IThemeBiz {
+interface IThemeBiz {
     Observable<Themes> getThemesList();
 }

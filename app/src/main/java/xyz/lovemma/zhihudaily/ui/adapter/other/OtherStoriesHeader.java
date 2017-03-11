@@ -7,8 +7,8 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  */
 
 public class OtherStoriesHeader implements BaseItem {
-    private String url;
-    private String description;
+    private final String url;
+    private final String description;
 
     public OtherStoriesHeader(String url, String description) {
         this.url = url;

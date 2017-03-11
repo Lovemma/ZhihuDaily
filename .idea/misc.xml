@@ -1,7 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.widget.Banner.Banner Banner(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.widget.Banner.Banner Banner(android.content.Context context, android.util.AttributeSet attrs)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.widget.Banner.Banner Banner(android.content.Context context)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.widget.Banner.Banner" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.BaseActivity" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.BeforeStories void setStories(java.util.List&lt;xyz.lovemma.zhihudaily.bean.Stories&gt; stories)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.BeforeStories void setDate(java.lang.String date)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.BeforeStories" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.BeforeThemeStories void setStories(java.util.List&lt;xyz.lovemma.zhihudaily.bean.ThemesContentItem&gt; stories)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.BeforeThemeStories" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.CommentActivity" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment DailyStoriesFragment()" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment" />
+      <entry_point TYPE="field" FQNAME="xyz.lovemma.zhihudaily.widget.DividerItemDecoration HORIZONTAL_LIST" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.widget.DividerItemDecoration DividerItemDecoration(android.content.Context context, int orientation)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.widget.DividerItemDecoration" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.EditorInfoActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.adapter.editor.EditorItemDelegate" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.EditorListActivity" />
+      <entry_point TYPE="field" FQNAME="xyz.lovemma.zhihudaily.bean.Editors CREATOR" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors Editors()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors void setName(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors void setAvatar(java.lang.String avatar)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors void setBio(java.lang.String bio)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors void setUrl(java.lang.String url)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors java.lang.String getUrl()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Editors Editors(android.os.Parcel in)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.bean.Editors" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.ExampleInstrumentedTest void useAppContext()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ExampleInstrumentedTest" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.ExampleUnitTest void addition_isCorrect()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ExampleUnitTest" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.ICommentContentBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.StoryContentShortComment&gt; getStoryContentShortComments(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.ICommentContentBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.StoryContentLongComment&gt; getStoryContentLongComments(int id)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.ICommentContentBiz" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IOtherStoriesBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.BeforeThemeStories&gt; getMoreThemeStories(int id, int story_id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IOtherStoriesBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.ThemesContent&gt; getOtherStories(int id)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IOtherStoriesBiz" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoriesBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.BeforeStories&gt; getBeforeStories(java.lang.String date)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoriesBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.LatestStories&gt; getLatestStories()" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoriesBiz" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoryContentBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.StoryContentExtra&gt; getStoryContentExtra(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoryContentBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.StoryContent&gt; getStoryContent(int id)" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IStoryContentBiz" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IThemeBiz rx.Observable&lt;xyz.lovemma.zhihudaily.bean.Themes&gt; getThemesList()" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.mvp.biz.IThemeBiz" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.LatestStories void setTop_stories(java.util.List&lt;xyz.lovemma.zhihudaily.bean.TopStories&gt; top_stories)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.LatestStories void setStories(java.util.List&lt;xyz.lovemma.zhihudaily.bean.Stories&gt; stories)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.LatestStories void setDate(java.lang.String date)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.LatestStories" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.LoginActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.MainActivity" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.ui.fragment.OtherStoriesFragment OtherStoriesFragment()" />
+      <entry_point TYPE="class" FQNAME="xyz.lovemma.zhihudaily.ui.fragment.OtherStoriesFragment" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.OtherStoryContentActivity" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils java.util.Map&lt;java.lang.String,?&gt; getAll(android.content.Context context)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils void clear(android.content.Context context)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils void remove(android.content.Context context, java.lang.String key)" />
+      <entry_point TYPE="field" FQNAME="xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils FILE_NAME" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setImages(java.util.List&lt;java.lang.String&gt; images)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setMultipic(boolean multipic)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setTitle(java.lang.String title)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setGa_prefix(java.lang.String ga_prefix)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories java.lang.String getGa_prefix()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories void setType(int type)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Stories int getType()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.Stories" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent.SectionBean" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setCss(java.util.List&lt;java.lang.String&gt; css)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setImages(java.util.List&lt;java.lang.String&gt; images)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent java.util.List&lt;java.lang.String&gt; getImages()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setJs(java.util.List&lt;?&gt; js)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent java.util.List&lt;?&gt; getJs()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent int getId()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setType(int type)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent int getType()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setSection(xyz.lovemma.zhihudaily.bean.StoryContent.SectionBean section)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent xyz.lovemma.zhihudaily.bean.StoryContent.SectionBean getSection()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setGa_prefix(java.lang.String ga_prefix)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent java.lang.String getGa_prefix()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setShare_url(java.lang.String share_url)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setImage(java.lang.String image)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setTitle(java.lang.String title)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setImage_source(java.lang.String image_source)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent void setBody(java.lang.String body)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContent" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.ui.activity.StoryContentActivity" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment.ReplyToBean" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setLikes(int likes)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment int getId()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setReply_to(xyz.lovemma.zhihudaily.bean.StoryContentComment.ReplyToBean reply_to)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment xyz.lovemma.zhihudaily.bean.StoryContentComment.ReplyToBean getReply_to()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setTime(int time)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setAvatar(java.lang.String avatar)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setContent(java.lang.String content)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment void setAuthor(java.lang.String author)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentComment" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentExtra void setComments(int comments)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentExtra void setShort_comments(int short_comments)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentExtra void setPopularity(int popularity)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentExtra void setLong_comments(int long_comments)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentExtra" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentLongComment void setComments(java.util.List&lt;xyz.lovemma.zhihudaily.bean.StoryContentComment&gt; comments)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentLongComment" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentShortComment void setComments(java.util.List&lt;xyz.lovemma.zhihudaily.bean.StoryContentComment&gt; comments)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.StoryContentShortComment" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Themes void setOthers(java.util.List&lt;xyz.lovemma.zhihudaily.bean.ThemesOther&gt; others)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Themes void setSubscribed(java.util.List&lt;?&gt; subscribed)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Themes java.util.List&lt;?&gt; getSubscribed()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Themes void setLimit(int limit)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.Themes int getLimit()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.Themes" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setEditors(java.util.ArrayList&lt;xyz.lovemma.zhihudaily.bean.Editors&gt; editors)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setStories(java.util.List&lt;xyz.lovemma.zhihudaily.bean.ThemesContentItem&gt; stories)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setImage_source(java.lang.String image_source)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent java.lang.String getImage_source()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setImage(java.lang.String image)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent java.lang.String getImage()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setName(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent java.lang.String getName()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setColor(int color)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent int getColor()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setBackground(java.lang.String background)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent void setDescription(java.lang.String description)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContent" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem void setImages(java.util.List&lt;java.lang.String&gt; images)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem void setTitle(java.lang.String title)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem void setType(int type)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem int getType()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesContentItem" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther void setName(java.lang.String name)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther void setId(int id)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther void setDescription(java.lang.String description)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther java.lang.String getDescription()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther void setThumbnail(java.lang.String thumbnail)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther java.lang.String getThumbnail()" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther void setColor(int color)" />
+      <entry_point TYPE="method" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther int getColor()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.ThemesOther" />
+      <entry_point TYPE="implicit.constructor" FQNAME="xyz.lovemma.zhihudaily.bean.TopStories" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

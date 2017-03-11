@@ -5,20 +5,20 @@
         android:id="@+id/menu_share"
         android:icon="@drawable/ic_share"
         android:title="@string/menu_share"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_collect"
         android:icon="@drawable/ic_star"
         android:title="@string/menu_collect"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_comment"
         android:icon="@drawable/ic_comment"
         android:title="@string/menu_comment"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="ifRoom|withText"/>
     <item
         android:id="@+id/menu_like"
         android:icon="@drawable/ic_thumb_up"
         android:title="@string/menu_follow"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="ifRoom|withText"/>
 </menu>

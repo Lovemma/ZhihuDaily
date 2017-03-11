@@ -10,7 +10,7 @@ import xyz.lovemma.zhihudaily.bean.TopStories;
  */
 
 public class StoriesHeader implements BaseItem {
-    private List<TopStories> mTopStories;
+    private final List<TopStories> mTopStories;
 
     public StoriesHeader(List<TopStories> topStories) {
         mTopStories = topStories;

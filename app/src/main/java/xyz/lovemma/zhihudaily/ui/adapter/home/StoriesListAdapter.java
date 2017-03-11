@@ -13,8 +13,8 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  */
 
 public class StoriesListAdapter extends MultiItemTypeAdapter<BaseItem> {
-    public StoriesListAdapter(Context context, List<BaseItem> datas) {
-        super(context, datas);
+    public StoriesListAdapter(Context context, List<BaseItem> itemList) {
+        super(context, itemList);
         addItemViewDelegate(new StoriesHeaderDelegate());
         addItemViewDelegate(new StoriesSectionDelegate());
         addItemViewDelegate(new StoriesItemDelegate());

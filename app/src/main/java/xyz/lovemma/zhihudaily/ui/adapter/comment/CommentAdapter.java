@@ -13,8 +13,8 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  */
 
 public class CommentAdapter extends MultiItemTypeAdapter<BaseItem> {
-    public CommentAdapter(Context context, List<BaseItem> datas) {
-        super(context, datas);
+    public CommentAdapter(Context context, List<BaseItem> itemList) {
+        super(context, itemList);
         addItemViewDelegate(new CommentSectionDelegate());
         addItemViewDelegate(new CommentEmptyDelegate());
         addItemViewDelegate(new CommentItemDelegate());

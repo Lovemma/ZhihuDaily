@@ -10,7 +10,7 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  * Created by OO on 2017/2/25.
  */
 
-public class DrawerHomeDelegate implements ItemViewDelegate<BaseItem> {
+class DrawerHomeDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public int getItemViewLayoutId() {

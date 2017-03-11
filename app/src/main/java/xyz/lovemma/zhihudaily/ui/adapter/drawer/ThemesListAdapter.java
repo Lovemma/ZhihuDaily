@@ -2,7 +2,6 @@ package xyz.lovemma.zhihudaily.ui.adapter.drawer;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,8 +22,8 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
 public class ThemesListAdapter extends MultiItemTypeAdapter<BaseItem> {
     private OnItemClickListener mOnItemClickListener;
 
-    public ThemesListAdapter(Context context, List<BaseItem> datas) {
-        super(context, datas);
+    public ThemesListAdapter(Context context, List<BaseItem> itemList) {
+        super(context, itemList);
         addItemViewDelegate(new DrawerHeaderDelegate());
         addItemViewDelegate(new DrawerHomeDelegate());
         addItemViewDelegate(new ThemeItemDelegate());
@@ -57,7 +56,7 @@ public class ThemesListAdapter extends MultiItemTypeAdapter<BaseItem> {
                     public void onClick(View v) {
                         if (mOnItemClickListener != null) {
                             int position = viewHolder.getAdapterPosition();
-                            mOnItemClickListener.onItemViewClick(v, viewHolder, position);
+                            mOnItemClickListener.onItemViewClick(position);
                         }
                     }
                 });
@@ -88,12 +87,12 @@ public class ThemesListAdapter extends MultiItemTypeAdapter<BaseItem> {
     public interface OnItemClickListener {
         void onDrawerHeaderClick(View view);
 
-        void onItemViewClick(View view, RecyclerView.ViewHolder holder, int position);
+        void onItemViewClick(int position);
 
         void onFollowClick();
     }
 
-    private View.OnClickListener mListener = new View.OnClickListener() {
+    private final View.OnClickListener mListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (mOnItemClickListener != null) {

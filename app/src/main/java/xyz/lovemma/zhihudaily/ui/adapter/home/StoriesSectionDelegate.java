@@ -10,7 +10,7 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  * Created by OO on 2017/2/14.
  */
 
-public class StoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
+class StoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
     @Override
     public int getItemViewLayoutId() {
         return R.layout.item_story_section;

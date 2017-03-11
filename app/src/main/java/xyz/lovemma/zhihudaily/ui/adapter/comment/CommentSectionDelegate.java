@@ -12,7 +12,7 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  * Created by OO on 2017/3/4.
  */
 
-public class CommentSectionDelegate implements ItemViewDelegate<BaseItem> {
+class CommentSectionDelegate implements ItemViewDelegate<BaseItem> {
     @Override
     public int getItemViewLayoutId() {
         return R.layout.comment_item_section;
@@ -28,7 +28,7 @@ public class CommentSectionDelegate implements ItemViewDelegate<BaseItem> {
         CommentSection commentSection = (CommentSection) baseItem;
         holder.setText(R.id.comment_num, commentSection.getTitle());
         if (commentSection.getType() == CommentSection.LONG_COMMENT) {
-            holder.getView(R.id.comment_ietm_img).setVisibility(View.GONE);
+            holder.getView(R.id.comment_item_img).setVisibility(View.GONE);
         }
     }
 }

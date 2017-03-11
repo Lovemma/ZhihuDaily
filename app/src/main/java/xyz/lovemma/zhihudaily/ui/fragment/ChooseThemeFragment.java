@@ -29,7 +29,7 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
     private RecyclerView navView;
 
     private ThemePresenter mPresenter;
-    private List<BaseItem> mList = new ArrayList<>();
+    private final List<BaseItem> mList = new ArrayList<>();
     private ThemesListAdapter mAdapter;
     private OtherStoriesFragment mOtherStoriesFragment;
     private DailyStoriesFragment mDailyStoriesFragment;
@@ -63,7 +63,7 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
             }
 
             @Override
-            public void onItemViewClick(View view, RecyclerView.ViewHolder holder, int position) {
+            public void onItemViewClick(int position) {
                 mAdapter.setSelection(position);
                 mAdapter.notifyDataSetChanged();
                 MainActivity activity = (MainActivity) getActivity();
@@ -95,7 +95,7 @@ public class ChooseThemeFragment extends Fragment implements IThemeView {
 
     @Override
     public void onDestroy() {
-        mPresenter.unsubcrible();
+        mPresenter.unSubcrible();
         mList.clear();
         super.onDestroy();
     }

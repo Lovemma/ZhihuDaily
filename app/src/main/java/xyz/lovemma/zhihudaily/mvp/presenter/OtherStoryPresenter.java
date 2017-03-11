@@ -14,8 +14,8 @@ import xyz.lovemma.zhihudaily.mvp.view.IOtherStoriesView;
  */
 
 public class OtherStoryPresenter extends IBasePresenter {
-    private IOtherStoriesView mView;
-    private OtherStoriesBiz mBiz;
+    private final IOtherStoriesView mView;
+    private final OtherStoriesBiz mBiz;
 
     public OtherStoryPresenter(IOtherStoriesView view) {
         mView = view;

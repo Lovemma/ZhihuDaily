@@ -13,7 +13,7 @@ public class StoryContentActivity extends BaseActivity{
 
     private ImageView mImageView;
     private TextView title;
-    private TextView imageSouce;
+    private TextView imageSource;
 
 
     @Override
@@ -23,7 +23,7 @@ public class StoryContentActivity extends BaseActivity{
 
     @Override
     protected void setHeaderImg() {
-        imageSouce = (TextView) findViewById(R.id.image_source);
+        imageSource = (TextView) findViewById(R.id.image_source);
         mImageView = (ImageView) findViewById(R.id.image);
         title = (TextView) findViewById(R.id.title);
     }
@@ -31,7 +31,7 @@ public class StoryContentActivity extends BaseActivity{
     @Override
     protected void loadHeaderImg(StoryContent storyContent) {
         title.setText(storyContent.getTitle());
-        imageSouce.setText(storyContent.getImage_source());
+        imageSource.setText(storyContent.getImage_source());
         Glide.with(this)
                 .load(storyContent.getImage())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

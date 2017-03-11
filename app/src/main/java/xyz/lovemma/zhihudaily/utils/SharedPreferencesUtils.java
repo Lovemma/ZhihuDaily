@@ -1,7 +1,9 @@
 package xyz.lovemma.zhihudaily.utils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import java.lang.reflect.InvocationTargetException;
@@ -87,7 +89,7 @@ public class SharedPreferencesUtils {
         private static Method findApply() {
 
             try {
-                Class cls = SharedPreferences.class;
+                Class<SharedPreferences> cls = SharedPreferences.class;
                 return cls.getMethod("apply");
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
@@ -98,6 +100,7 @@ public class SharedPreferencesUtils {
         /**
          * 如果找到则使用apply执行，否则使用commit
          */
+        @TargetApi(Build.VERSION_CODES.KITKAT)
         public static void apply(SharedPreferences.Editor editor) {
 
             try {
@@ -105,9 +108,7 @@ public class SharedPreferencesUtils {
                     sApplyMethod.invoke(editor);
                     return;
                 }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
 

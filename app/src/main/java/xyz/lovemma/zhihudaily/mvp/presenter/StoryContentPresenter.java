@@ -14,8 +14,8 @@ import xyz.lovemma.zhihudaily.mvp.view.IStoryContentView;
  */
 
 public class StoryContentPresenter extends IBasePresenter {
-    private IStoryContentView mView;
-    private StoryContentBiz mStoryContentBiz;
+    private final IStoryContentView mView;
+    private final StoryContentBiz mStoryContentBiz;
 
     public StoryContentPresenter(IStoryContentView view) {
         mView = view;

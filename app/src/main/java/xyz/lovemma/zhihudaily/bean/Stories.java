@@ -8,20 +8,11 @@ import java.util.List;
 
 public class Stories implements BaseItem {
 
-    /**
-     * images : ["http://pic1.zhimg.com/c794daedda9087b658ec312340904ffc.jpg"]
-     * type : 0
-     * id : 9205443
-     * ga_prefix : 021020
-     * title : 现在的城市也许都是高楼，但刚开始的时候谁和谁都不一样
-     * multipic : true
-     */
-
     private int type;
     private int id;
     private String ga_prefix;
     private String title;
-    private boolean multipic;
+    private boolean multiPic;
     private List<String> images;
 
     public int getType() {
@@ -56,12 +47,12 @@ public class Stories implements BaseItem {
         this.title = title;
     }
 
-    public boolean isMultipic() {
-        return multipic;
+    public boolean isMultiPic() {
+        return multiPic;
     }
 
-    public void setMultipic(boolean multipic) {
-        this.multipic = multipic;
+    public void setMultiPic(boolean multiPic) {
+        this.multiPic = multiPic;
     }
 
     public List<String> getImages() {

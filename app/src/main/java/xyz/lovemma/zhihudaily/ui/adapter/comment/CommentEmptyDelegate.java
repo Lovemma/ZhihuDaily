@@ -10,7 +10,7 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  * Created by OO on 2017/3/4.
  */
 
-public class CommentEmptyDelegate implements ItemViewDelegate<BaseItem> {
+class CommentEmptyDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public int getItemViewLayoutId() {

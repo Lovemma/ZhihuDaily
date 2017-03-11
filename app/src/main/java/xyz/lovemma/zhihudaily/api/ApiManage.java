@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManage {
     private static ApiManage mApiManage;
-    private Retrofit mRetrofit;
     private CommonApi mCommonApi;
 
     private static final int DEFAULT_TIMEOUT = 5;
@@ -33,7 +32,7 @@ public class ApiManage {
         return mApiManage;
     }
 
-    private Object Monitor = new Object();
+    private final Object Monitor = new Object();
 
     public CommonApi getCommonApi() {
         if (mCommonApi == null) {
@@ -47,16 +46,16 @@ public class ApiManage {
     }
 
     private <T> T configRetrofit(Class<T> service) {
-        mRetrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://news-at.zhihu.com")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        return mRetrofit.create(service);
+        return retrofit.create(service);
     }
 
-    private static OkHttpClient client = new OkHttpClient.Builder()
+    private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .build();
 }

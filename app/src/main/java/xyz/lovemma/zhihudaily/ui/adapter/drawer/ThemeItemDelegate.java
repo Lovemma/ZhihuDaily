@@ -11,7 +11,7 @@ import xyz.lovemma.zhihudaily.bean.ThemesOther;
  * Created by OO on 2017/2/24.
  */
 
-public class ThemeItemDelegate implements ItemViewDelegate<BaseItem> {
+class ThemeItemDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public int getItemViewLayoutId() {

@@ -22,7 +22,7 @@ import xyz.lovemma.zhihudaily.widget.CircleTransform;
  * Created by OO on 2017/2/27.
  */
 
-public class OtherStoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
+class OtherStoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
     private Context mContext;
 
     @Override

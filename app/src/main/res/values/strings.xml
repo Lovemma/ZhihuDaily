@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZhihuDaily</string>
+    <string name="app_name">知乎日报</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -16,7 +16,7 @@
     <string name="menu_follow">点赞</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_write_comment">评论</string>
+    <string name="loading">正在加载…</string>
 
 </resources>

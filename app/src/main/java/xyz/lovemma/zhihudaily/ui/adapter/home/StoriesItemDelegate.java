@@ -19,7 +19,7 @@ import xyz.lovemma.zhihudaily.ui.activity.StoryContentActivity;
  * Created by OO on 2017/2/13.
  */
 
-public class StoriesItemDelegate implements ItemViewDelegate<BaseItem> {
+class StoriesItemDelegate implements ItemViewDelegate<BaseItem> {
     private Context mContext;
 
     @Override
@@ -37,7 +37,7 @@ public class StoriesItemDelegate implements ItemViewDelegate<BaseItem> {
 
         final Stories stories = (Stories) baseItem;
         holder.setText(R.id.title, stories.getTitle());
-        if (stories.isMultipic()) {
+        if (stories.isMultiPic()) {
             holder.getView(R.id.multiPic).setVisibility(View.VISIBLE);
         } else {
             holder.getView(R.id.multiPic).setVisibility(View.INVISIBLE);

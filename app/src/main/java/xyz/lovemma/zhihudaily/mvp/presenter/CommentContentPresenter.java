@@ -14,8 +14,8 @@ import xyz.lovemma.zhihudaily.mvp.view.ICommentContentView;
  */
 
 public class CommentContentPresenter extends IBasePresenter {
-    private CommentContentBiz mBiz;
-    private ICommentContentView mView;
+    private final CommentContentBiz mBiz;
+    private final ICommentContentView mView;
 
     public CommentContentPresenter(ICommentContentView view) {
         mView = view;

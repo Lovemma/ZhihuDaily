@@ -71,7 +71,7 @@ public class Editors implements BaseItem, Parcelable {
     public Editors() {
     }
 
-    protected Editors(Parcel in) {
+    private Editors(Parcel in) {
         this.url = in.readString();
         this.bio = in.readString();
         this.id = in.readInt();

@@ -7,8 +7,8 @@ import xyz.lovemma.zhihudaily.bean.BaseItem;
  */
 
 public class CommentSection implements BaseItem {
-    private int commentNumber;
-    private int type;
+    private final int commentNumber;
+    private final int type;
     public static final int LONG_COMMENT = 0;
     public static final int SHORT_COMMENT = 1;
 

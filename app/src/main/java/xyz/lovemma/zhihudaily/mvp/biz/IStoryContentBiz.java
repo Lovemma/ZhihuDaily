@@ -8,7 +8,7 @@ import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
  * Created by OO on 2017/2/16.
  */
 
-public interface IStoryContentBiz {
+interface IStoryContentBiz {
     Observable<StoryContent> getStoryContent(int id);
 
     Observable<StoryContentExtra> getStoryContentExtra(int id);

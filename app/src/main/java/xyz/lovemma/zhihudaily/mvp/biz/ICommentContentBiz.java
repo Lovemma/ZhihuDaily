@@ -8,7 +8,7 @@ import xyz.lovemma.zhihudaily.bean.StoryContentShortComment;
  * Created by OO on 2017/3/4.
  */
 
-public interface ICommentContentBiz {
+interface ICommentContentBiz {
     Observable<StoryContentLongComment> getStoryContentLongComments(int id);
 
     Observable<StoryContentShortComment> getStoryContentShortComments(int id);

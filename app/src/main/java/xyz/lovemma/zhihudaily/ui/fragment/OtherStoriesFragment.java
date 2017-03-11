@@ -40,10 +40,9 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
-    private List<BaseItem> mItemList = new ArrayList<>();
+    private final List<BaseItem> mItemList = new ArrayList<>();
 
     private OtherStoryPresenter mPresenter;
-    private OtherStoriesListAdapter mAdapter;
     private LoadMoreWrapper mLoadMoreWrapper;
     private boolean isRefresh;
 
@@ -71,7 +70,7 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_other_stories, container, false);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipRefreshlayout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         return view;
     }
@@ -84,7 +83,7 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
 
     @Override
     public void onDestroy() {
-        mPresenter.unsubcrible();
+        mPresenter.unSubcrible();
         super.onDestroy();
     }
 
@@ -92,8 +91,8 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new OtherStoryPresenter(this);
-        mAdapter = new OtherStoriesListAdapter(getContext(), mItemList);
-        mLoadMoreWrapper = new LoadMoreWrapper(mAdapter);
+        OtherStoriesListAdapter adapter = new OtherStoriesListAdapter(getContext(), mItemList);
+        mLoadMoreWrapper = new LoadMoreWrapper(adapter);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override

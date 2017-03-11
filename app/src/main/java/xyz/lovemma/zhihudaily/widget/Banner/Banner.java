@@ -32,10 +32,10 @@ public class Banner extends RelativeLayout {
     private BannerAdapter mAdapter;
     private ViewPager.OnPageChangeListener mOnPageChangeListener;
     private List<TopStories> mDataList;
-    private List<ImageView> mViewList = new ArrayList<>();
+    private final List<ImageView> mViewList = new ArrayList<>();
     private int lastPosition;
     private boolean isAutoPlay = true;
-    Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private boolean isLoad;
     private OnBannerClickListener mOnBannerClickListener;
 
@@ -69,16 +69,15 @@ public class Banner extends RelativeLayout {
     }
 
     public interface OnBannerClickListener {
-        public void OnBannerClick(int id);
+        void OnBannerClick(int id);
     }
 
-    public Banner start() {
-        if (isLoad == false) {
+    public void start() {
+        if (!isLoad) {
             initIndicator();
             initImageList();
             isLoad = true;
         }
-        return this;
     }
 
     private void initIndicator() {

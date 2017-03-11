@@ -8,7 +8,7 @@ import xyz.lovemma.zhihudaily.bean.LatestStories;
  * Created by OO on 2017/2/11.
  */
 
-public interface IStoriesBiz {
+interface IStoriesBiz {
     Observable<LatestStories> getLatestStories();
 
     Observable<BeforeStories> getBeforeStories(String date);

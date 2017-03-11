@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="60dp"
-        android:src="@drawable/login_logo"/>
+        android:src="@drawable/login_logo"
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -30,11 +31,13 @@
     <Button
         style="@style/ButtonStyle"
         android:drawableLeft="@drawable/login_sina_weibo"
+        android:drawableStart="@drawable/login_sina_weibo"
         android:text="新浪微博"/>
 
     <Button
         style="@style/ButtonStyle"
         android:drawableLeft="@drawable/login_tencent_weibo"
+        android:drawableStart="@drawable/login_tencent_weibo"
         android:text="腾讯微博"/>
 
     <TextView

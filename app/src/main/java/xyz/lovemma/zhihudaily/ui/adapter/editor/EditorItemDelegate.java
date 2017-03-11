@@ -18,8 +18,7 @@ import xyz.lovemma.zhihudaily.widget.CircleTransform;
  * Created by OO on 2017/3/8.
  */
 
-public class EditorItemDelegate implements ItemViewDelegate<BaseItem> {
-    private Context mContext;
+class EditorItemDelegate implements ItemViewDelegate<BaseItem> {
     @Override
     public int getItemViewLayoutId() {
         return R.layout.editor_list_item;
@@ -32,14 +31,14 @@ public class EditorItemDelegate implements ItemViewDelegate<BaseItem> {
 
     @Override
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
-        mContext = holder.getConvertView().getContext();
+        Context context = holder.getConvertView().getContext();
         Editors editors = (Editors) baseItem;
         ((TextView)holder.getView(R.id.editor_name)).setText(editors.getName());
         ((TextView)holder.getView(R.id.editor_bio)).setText(editors.getBio());
-        Glide.with(mContext)
+        Glide.with(context)
                 .load(editors.getAvatar())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(mContext))
+                .transform(new CircleTransform(context))
                 .into((ImageView) holder.getView(R.id.editor_avatar));
     }
 }

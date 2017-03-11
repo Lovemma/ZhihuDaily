@@ -11,8 +11,8 @@ import java.util.List;
  * Created by OO on 2017/2/14.
  */
 
-public class BannerAdapter extends PagerAdapter {
-    private List<ImageView> mList;
+class BannerAdapter extends PagerAdapter {
+    private final List<ImageView> mList;
 
     public BannerAdapter(List<ImageView> list) {
         mList = list;

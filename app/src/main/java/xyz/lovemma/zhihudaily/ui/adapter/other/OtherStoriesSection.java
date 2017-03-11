@@ -10,7 +10,7 @@ import xyz.lovemma.zhihudaily.bean.Editors;
  */
 
 public class OtherStoriesSection implements BaseItem {
-    private ArrayList<Editors> mEditors;
+    private final ArrayList<Editors> mEditors;
 
     public OtherStoriesSection(ArrayList<Editors> editors) {
         mEditors = editors;

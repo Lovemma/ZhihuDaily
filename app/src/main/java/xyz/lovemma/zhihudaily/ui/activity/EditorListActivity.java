@@ -24,9 +24,7 @@ import xyz.lovemma.zhihudaily.bean.Editors;
 import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 public class EditorListActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-    private List<Editors> mEditorsList = new ArrayList<>();
+    private final List<Editors> mEditorsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +40,20 @@ public class EditorListActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mRecyclerView = (RecyclerView) findViewById(R.id.editor_list);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.editor_list);
 
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        mToolbar.setTitle("主编");
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(new CommonAdapter<Editors>(this, R.layout.editor_list_item, mEditorsList) {
+        toolbar.setTitle("主编");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(new CommonAdapter<Editors>(this, R.layout.editor_list_item, mEditorsList) {
             @Override
             protected void convert(ViewHolder holder, Editors editors, int position) {
                 ((TextView) holder.getView(R.id.editor_name)).setText(editors.getName());
