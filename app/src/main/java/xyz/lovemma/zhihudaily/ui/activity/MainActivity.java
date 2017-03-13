@@ -20,8 +20,9 @@ import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 public class MainActivity extends AppCompatActivity {
     private DailyStoriesFragment mStoriesFragment;
-    private Fragment currentFragment = new Fragment();
+    private Fragment currentFragment;
     private DrawerLayout mDrawer;
+    private String DRAWER_TYPE = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragment() {
         mStoriesFragment = new DailyStoriesFragment();
+        currentFragment = mStoriesFragment;
         switchFragment(mStoriesFragment, "首页");
     }
 
@@ -87,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
-            if (currentFragment != mStoriesFragment) {
+//            if (currentFragment != mStoriesFragment) {
+            if (!DRAWER_TYPE.equals("首页")) {
                 switchFragment(mStoriesFragment, "首页");
                 ((ChooseThemeFragment) getSupportFragmentManager().findFragmentById(R.id.choose_theme)).getAdapter().setSelection(1);
                 ((ChooseThemeFragment) getSupportFragmentManager().findFragmentById(R.id.choose_theme)).getAdapter().notifyDataSetChanged();
@@ -97,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void switchFragment(Fragment fragment, CharSequence title) {
-        if (currentFragment == fragment) {
+    public void switchFragment(Fragment fragment, String title) {
+//        if (currentFragment == fragment) {
+//            return;
+//        }
+        if (DRAWER_TYPE != ""
+                && DRAWER_TYPE.equals(title)) {
             return;
         }
         getSupportFragmentManager()
@@ -107,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.container, fragment)
                 .commit();
         currentFragment = fragment;
+        DRAWER_TYPE = title;
         setTitle(title);
     }
 

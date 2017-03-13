@@ -40,22 +40,24 @@ class OtherStoriesSectionDelegate implements ItemViewDelegate<BaseItem> {
         mContext = holder.getConvertView().getContext();
         final OtherStoriesSection section = (OtherStoriesSection) baseItem;
         LinearLayout editorGroup = holder.getView(R.id.editor_group);
-        for (Editors editors : section.getEditors()) {
-            ImageView imageView = new ImageView(mContext);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            imageView.setLayoutParams(params);
-            Glide.with(mContext)
-                    .load(editors.getAvatar())
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .transform(new CircleTransform(mContext))
-                    .into(imageView);
-            editorGroup.addView(imageView);
+        if (editorGroup.getChildCount() == 0) {
+            for (Editors editors : section.getEditors()) {
+                ImageView imageView = new ImageView(mContext);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                imageView.setLayoutParams(params);
+                Glide.with(mContext)
+                        .load(editors.getAvatar())
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .transform(new CircleTransform(mContext))
+                        .into(imageView);
+                editorGroup.addView(imageView);
+            }
         }
         holder.getView(R.id.editors).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EditorListActivity.class);
-                intent.putParcelableArrayListExtra("editorList",  section.getEditors());
+                intent.putParcelableArrayListExtra("editorList", section.getEditors());
                 mContext.startActivity(intent);
             }
         });

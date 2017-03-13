@@ -28,6 +28,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
             if (msg.what == 10086) {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
             super.handleMessage(msg);
         }
