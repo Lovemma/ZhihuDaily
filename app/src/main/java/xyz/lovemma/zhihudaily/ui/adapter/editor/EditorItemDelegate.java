@@ -9,9 +9,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.Editors;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 /**
@@ -33,12 +36,21 @@ class EditorItemDelegate implements ItemViewDelegate<BaseItem> {
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
         Context context = holder.getConvertView().getContext();
         Editors editors = (Editors) baseItem;
-        ((TextView)holder.getView(R.id.editor_name)).setText(editors.getName());
-        ((TextView)holder.getView(R.id.editor_bio)).setText(editors.getBio());
-        Glide.with(context)
-                .load(editors.getAvatar())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(context))
-                .into((ImageView) holder.getView(R.id.editor_avatar));
+        ((TextView) holder.getView(R.id.editor_name)).setText(editors.getName());
+        ((TextView) holder.getView(R.id.editor_bio)).setText(editors.getBio());
+        if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                && !NetWorkUtils.isWifiConnected(App.getContext())) {
+            Glide.with(context)
+                    .load(R.drawable.editor_profile_avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(context))
+                    .into((ImageView) holder.getView(R.id.editor_avatar));
+        } else {
+            Glide.with(context)
+                    .load(editors.getAvatar())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(context))
+                    .into((ImageView) holder.getView(R.id.editor_avatar));
+        }
     }
 }

@@ -21,6 +21,7 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.BeforeThemeStories;
@@ -120,8 +121,8 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.menu_other_story, menu);
-        if (SharedPreferencesUtils.contains(getContext(), Integer.toString(id))
-                && (boolean) SharedPreferencesUtils.get(getContext(), Integer.toString(id), false)) {
+        if (SharedPreferencesUtils.contains(App.getContext(), Integer.toString(id))
+                && (boolean) SharedPreferencesUtils.get(App.getContext(), Integer.toString(id), false)) {
             menu.findItem(R.id.action_follow).setIcon(R.drawable.ic_remove_follow);
         } else {
             menu.findItem(R.id.action_follow).setIcon(R.drawable.ic_add_follow);
@@ -133,12 +134,12 @@ public class OtherStoriesFragment extends Fragment implements IOtherStoriesView 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_follow:
-                if ((boolean) SharedPreferencesUtils.get(getContext(), Integer.toString(id), false)) {
-                    SharedPreferencesUtils.put(getContext(), Integer.toString(id), false);
+                if ((boolean) SharedPreferencesUtils.get(App.getContext(), Integer.toString(id), false)) {
+                    SharedPreferencesUtils.put(App.getContext(), Integer.toString(id), false);
                     Toast.makeText(getContext(), "已取消关注", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_add_follow);
                 } else {
-                    SharedPreferencesUtils.put(getContext(), Integer.toString(id), true);
+                    SharedPreferencesUtils.put(App.getContext(), Integer.toString(id), true);
                     Toast.makeText(getContext(), "已关注", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_remove_follow);
                 }

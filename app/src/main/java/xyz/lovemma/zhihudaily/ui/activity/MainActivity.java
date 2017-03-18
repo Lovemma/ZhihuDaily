@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.ui.fragment.ChooseThemeFragment;
 import xyz.lovemma.zhihudaily.ui.fragment.DailyStoriesFragment;
@@ -51,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 goToLogin();
                 break;
             case R.id.action_night:
-                if ((boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false)) {
+                if ((boolean) SharedPreferencesUtils.get(App.getContext(), "night_mode", false)) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    SharedPreferencesUtils.put(getApplicationContext(), "night_mode", false);
+                    SharedPreferencesUtils.put(App.getContext(), "night_mode", false);
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    SharedPreferencesUtils.put(getApplicationContext(), "night_mode", true);
+                    SharedPreferencesUtils.put(App.getContext(), "night_mode", true);
                 }
                 recreate();
                 break;

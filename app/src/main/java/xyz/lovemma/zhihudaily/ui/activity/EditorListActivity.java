@@ -19,8 +19,11 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.Editors;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 public class EditorListActivity extends AppCompatActivity {
@@ -58,11 +61,20 @@ public class EditorListActivity extends AppCompatActivity {
             protected void convert(ViewHolder holder, Editors editors, int position) {
                 ((TextView) holder.getView(R.id.editor_name)).setText(editors.getName());
                 ((TextView) holder.getView(R.id.editor_bio)).setText(editors.getBio());
-                Glide.with(EditorListActivity.this)
-                        .load(editors.getAvatar())
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .transform(new CircleTransform(mContext))
-                        .into((ImageView) holder.getView(R.id.editor_avatar));
+                if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                        && !NetWorkUtils.isWifiConnected(App.getContext())) {
+                    Glide.with(EditorListActivity.this)
+                            .load(R.drawable.editor_profile_avatar)
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .transform(new CircleTransform(mContext))
+                            .into((ImageView) holder.getView(R.id.editor_avatar));
+                } else {
+                    Glide.with(EditorListActivity.this)
+                            .load(editors.getAvatar())
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .transform(new CircleTransform(mContext))
+                            .into((ImageView) holder.getView(R.id.editor_avatar));
+                }
                 final int id = editors.getId();
                 holder.getView(R.id.editor_item).setOnClickListener(new View.OnClickListener() {
                     @Override

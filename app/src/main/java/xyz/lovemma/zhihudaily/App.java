@@ -17,7 +17,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
-        boolean isNightMode = (boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false);
+        boolean isNightMode = (boolean) SharedPreferencesUtils.get(mContext, "night_mode", false);
         if (isNightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }

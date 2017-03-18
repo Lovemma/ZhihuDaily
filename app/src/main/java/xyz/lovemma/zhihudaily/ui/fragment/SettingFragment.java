@@ -2,15 +2,18 @@ package xyz.lovemma.zhihudaily.ui.fragment;
 
 
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.utils.DataCleanUtil;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 public class SettingFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
-
+    private CheckBoxPreference noImgMode;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -22,7 +25,14 @@ public class SettingFragment extends PreferenceFragment implements Preference.On
         addPreferencesFromResource(R.xml.setting);
 
         Preference clearCache = getPreferenceScreen().findPreference("clear_cache");
+        noImgMode = (CheckBoxPreference) findPreference("NO_IMAGE_MODE");
+        if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)) {
+            noImgMode.setDefaultValue(true);
+        } else {
+            noImgMode.setDefaultValue(false);
+        }
         clearCache.setOnPreferenceClickListener(this);
+        noImgMode.setOnPreferenceClickListener(this);
     }
 
 
@@ -32,6 +42,13 @@ public class SettingFragment extends PreferenceFragment implements Preference.On
             case "clear_cache":
                 DataCleanUtil.cleanInternalCache();
                 Toast.makeText(getActivity(), "清理成功", Toast.LENGTH_SHORT).show();
+                break;
+            case "NO_IMAGE_MODE":
+                if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)) {
+                    SharedPreferencesUtils.put(App.getContext(), "NO_IMAGE_MODE", true);
+                } else {
+                    SharedPreferencesUtils.put(App.getContext(), "NO_IMAGE_MODE", false);
+                }
                 break;
         }
         return false;

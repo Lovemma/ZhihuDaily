@@ -8,8 +8,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 /**
  * Created by OO on 2017/2/27.
@@ -31,11 +34,20 @@ class OtherStoriesHeaderDelegate implements ItemViewDelegate<BaseItem> {
         OtherStoriesHeader storiesHeader = (OtherStoriesHeader) baseItem;
         ImageView imageView = holder.getView(R.id.image);
         TextView textView = holder.getView(R.id.title);
-        Glide.with(holder.getConvertView().getContext())
-                .load(storiesHeader.getUrl())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .centerCrop()
-                .into(imageView);
+        if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                && !NetWorkUtils.isWifiConnected(App.getContext())) {
+            Glide.with(holder.getConvertView().getContext())
+                    .load(R.drawable.image_top_default)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .centerCrop()
+                    .into(imageView);
+        } else {
+            Glide.with(holder.getConvertView().getContext())
+                    .load(storiesHeader.getUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .centerCrop()
+                    .into(imageView);
+        }
         textView.setText(storiesHeader.getDescription());
     }
 }

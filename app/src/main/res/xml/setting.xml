@@ -9,7 +9,7 @@
             android:title="自动离线下载"/>
 
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:key="NO_IMAGE_MODE"
             android:summary="2G/3G/4G 网络下不加载图片"
             android:title="无图模式"/>
 

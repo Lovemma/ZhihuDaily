@@ -17,8 +17,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.TopStories;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 /**
  * Created by OO on 2017/2/14.
@@ -111,10 +114,18 @@ public class Banner extends RelativeLayout {
                     mOnBannerClickListener.OnBannerClick(id);
                 }
             });
-            Glide.with(getContext())
-                    .load(mDataList.get(i).getImage())
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(imageView);
+            if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                    && !NetWorkUtils.isWifiConnected(App.getContext())) {
+                Glide.with(getContext())
+                        .load(R.drawable.image_top_default)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(imageView);
+            } else {
+                Glide.with(getContext())
+                        .load(mDataList.get(i).getImage())
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(imageView);
+            }
         }
         setData();
     }
@@ -126,7 +137,7 @@ public class Banner extends RelativeLayout {
         }
         mViewPager.setAdapter(mAdapter);
         mHandler.removeCallbacks(mRunnable);
-        mHandler.postDelayed(mRunnable, 3000);
+        mHandler.postDelayed(mRunnable, 4000);
         if (mOnPageChangeListener == null) {
             mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
                 @Override

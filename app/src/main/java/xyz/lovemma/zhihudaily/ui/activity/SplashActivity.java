@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.LaunchImage;
 import xyz.lovemma.zhihudaily.mvp.presenter.SplashPresenter;
@@ -53,7 +54,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
 
     @Override
     public void onRequestError() {
-        imgUrl = (String) SharedPreferencesUtils.get(this, "launch_image", "");
+        imgUrl = (String) SharedPreferencesUtils.get(App.getContext(), "launch_image", "");
         if (TextUtils.isEmpty(imgUrl)) {
             Glide.with(this)
                     .load(imgUrl)
@@ -69,7 +70,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
                 .load(imgUrl)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(launchImage);
-        SharedPreferencesUtils.put(this, "launch_image", imgUrl);
+        SharedPreferencesUtils.put(App.getContext(), "launch_image", imgUrl);
     }
 
     @Override

@@ -8,9 +8,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.StoryContentComment;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 import xyz.lovemma.zhihudaily.widget.CircleTransform;
 
 /**
@@ -33,11 +36,20 @@ class CommentItemDelegate implements ItemViewDelegate<BaseItem> {
     public void convert(ViewHolder holder, BaseItem baseItem, int position) {
         Context context = holder.getConvertView().getContext();
         StoryContentComment comment = (StoryContentComment) baseItem;
-        Glide.with(context)
-                .load(comment.getAvatar())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(context))
-                .into((ImageView) holder.getView(R.id.avatar));
+        if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                && !NetWorkUtils.isWifiConnected(App.getContext())) {
+            Glide.with(context)
+                    .load(R.drawable.account_avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(context))
+                    .into((ImageView) holder.getView(R.id.avatar));
+        } else {
+            Glide.with(context)
+                    .load(comment.getAvatar())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(context))
+                    .into((ImageView) holder.getView(R.id.avatar));
+        }
         holder.setText(R.id.author, comment.getAuthor());
         holder.setText(R.id.content, comment.getContent());
         holder.setText(R.id.likes, Integer.toString(comment.getLikes()));

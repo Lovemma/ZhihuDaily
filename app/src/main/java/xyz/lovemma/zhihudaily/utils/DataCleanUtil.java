@@ -2,8 +2,6 @@ package xyz.lovemma.zhihudaily.utils;
 
 import android.os.Environment;
 
-import com.bumptech.glide.Glide;
-
 import java.io.File;
 
 import xyz.lovemma.zhihudaily.App;
@@ -14,7 +12,6 @@ import xyz.lovemma.zhihudaily.App;
 
 public class DataCleanUtil {
     public static void cleanInternalCache() {
-        Glide.getPhotoCacheDir(App.getContext()).delete();
         deleteDir(App.getContext().getCacheDir());
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             deleteDir(App.getContext().getExternalCacheDir());

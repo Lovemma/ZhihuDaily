@@ -10,10 +10,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.BaseItem;
 import xyz.lovemma.zhihudaily.bean.ThemesContentItem;
 import xyz.lovemma.zhihudaily.ui.activity.OtherStoryContentActivity;
+import xyz.lovemma.zhihudaily.utils.NetWorkUtils;
+import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 /**
  * Created by OO on 2017/2/28.
@@ -39,10 +42,18 @@ class OtherStoriesItemDelegate implements ItemViewDelegate<BaseItem> {
         holder.setText(R.id.title, item.getTitle());
         holder.getView(R.id.multiPic).setVisibility(View.GONE);
         if (item.getImages() != null) {
-            Glide.with(mContext)
-                    .load(item.getImages().get(0))
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into((ImageView) holder.getView(R.id.image));
+            if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)
+                    && !NetWorkUtils.isWifiConnected(App.getContext())) {
+                Glide.with(mContext)
+                        .load(R.drawable.image_small_default)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into((ImageView) holder.getView(R.id.image));
+            } else {
+                Glide.with(mContext)
+                        .load(item.getImages().get(0))
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into((ImageView) holder.getView(R.id.image));
+            }
         } else {
             holder.getView(R.id.image).setVisibility(View.GONE);
         }

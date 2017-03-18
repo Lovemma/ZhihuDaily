@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.bean.StoryContent;
 import xyz.lovemma.zhihudaily.bean.StoryContentExtra;
@@ -160,10 +161,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
                 startActivity(intent);
                 break;
             case R.id.menu_like:
-                if ((boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
+                if ((boolean) SharedPreferencesUtils.get(App.getContext(), Integer.toString(id), false)) {
                     likeImg.setImageResource(R.drawable.ic_thumb_up);
                     likeText.setText(CalculateUtil.CalculatePraise(--likeNum));
-                    SharedPreferencesUtils.put(mContext, Integer.toString(id), false);
+                    SharedPreferencesUtils.put(App.getContext(), Integer.toString(id), false);
                 } else {
                     likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
                     likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
@@ -199,7 +200,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
         loadHeaderImg(storyContent);
         String body = storyContent.getBody();
         List<String> css = storyContent.getCss();
-        boolean night_mode = (boolean) SharedPreferencesUtils.get(getApplicationContext(), "night_mode", false);
+        boolean night_mode = (boolean) SharedPreferencesUtils.get(App.getContext(), "night_mode", false);
         String data = WebUtil.buildHtmlWithCss(body, css, night_mode);
         mWebView.loadData(data, WebUtil.MIME_TYPE, WebUtil.ENCODING);
     }
@@ -215,8 +216,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IStoryCo
 
         commentImg.setImageResource(R.drawable.ic_comment);
         commentText.setText(CalculateUtil.CalculatePraise(storyContentExtra.getComments()));
-        if (SharedPreferencesUtils.contains(mContext, Integer.toString(id))
-                && (boolean) SharedPreferencesUtils.get(mContext, Integer.toString(id), false)) {
+        if (SharedPreferencesUtils.contains(App.getContext(), Integer.toString(id))
+                && (boolean) SharedPreferencesUtils.get(App.getContext(), Integer.toString(id), false)) {
             likeImg.setImageResource(R.drawable.ic_thumb_up_orange);
             likeText.setText(CalculateUtil.CalculatePraise(++likeNum));
         } else {
