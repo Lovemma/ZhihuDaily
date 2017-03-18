@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="常规">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:summary="仅 Wi-Fi 下可用，自动下载最新内容"
+            android:title="自动离线下载"/>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:summary="2G/3G/4G 网络下不加载图片"
+            android:title="无图模式"/>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="大字号"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="其他">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="推送消息"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="点评分享到微博"/>
+
+        <Preference
+            android:key="clear_cache"
+            android:title="清除缓存"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="反馈">
+        <Preference
+            android:title="意见反馈"/>
+    </PreferenceCategory>
+</PreferenceScreen>
