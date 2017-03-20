@@ -13,8 +13,8 @@ import xyz.lovemma.zhihudaily.mvp.view.ISplashView;
  */
 
 public class SplashPresenter extends IBasePresenter {
-    private SplashBiz mBiz;
-    private ISplashView mView;
+    private final SplashBiz mBiz;
+    private final ISplashView mView;
 
     public SplashPresenter(ISplashView view) {
         mView = view;

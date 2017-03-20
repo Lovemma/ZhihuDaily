@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
     private ImageView launchImage;
     private String imgUrl;
     private SplashPresenter mPresenter;
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 10086) {

@@ -13,7 +13,6 @@ import xyz.lovemma.zhihudaily.utils.DataCleanUtil;
 import xyz.lovemma.zhihudaily.utils.SharedPreferencesUtils;
 
 public class SettingFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
-    private CheckBoxPreference noImgMode;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -25,7 +24,7 @@ public class SettingFragment extends PreferenceFragment implements Preference.On
         addPreferencesFromResource(R.xml.setting);
 
         Preference clearCache = getPreferenceScreen().findPreference("clear_cache");
-        noImgMode = (CheckBoxPreference) findPreference("NO_IMAGE_MODE");
+        CheckBoxPreference noImgMode = (CheckBoxPreference) findPreference("NO_IMAGE_MODE");
         if ((boolean) SharedPreferencesUtils.get(App.getContext(), "NO_IMAGE_MODE", false)) {
             noImgMode.setDefaultValue(true);
         } else {

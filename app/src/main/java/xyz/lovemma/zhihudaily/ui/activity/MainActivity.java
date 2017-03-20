@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Objects;
+
 import xyz.lovemma.zhihudaily.App;
 import xyz.lovemma.zhihudaily.R;
 import xyz.lovemma.zhihudaily.ui.fragment.ChooseThemeFragment;
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switchFragment(Fragment fragment, String title) {
-        if (DRAWER_TYPE != ""
+        if (!Objects.equals(DRAWER_TYPE, "")
                 && DRAWER_TYPE.equals(title)) {
             return;
         }

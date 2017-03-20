@@ -14,10 +14,6 @@ public class LaunchImage {
         return creatives;
     }
 
-    public void setCreatives(List<CreativesBean> creatives) {
-        this.creatives = creatives;
-    }
-
     public static class CreativesBean {
 
         private String url;

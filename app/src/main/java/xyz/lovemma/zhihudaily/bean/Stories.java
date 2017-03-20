@@ -51,10 +51,6 @@ public class Stories implements BaseItem {
         return multiPic;
     }
 
-    public void setMultiPic(boolean multiPic) {
-        this.multiPic = multiPic;
-    }
-
     public List<String> getImages() {
         return images;
     }
